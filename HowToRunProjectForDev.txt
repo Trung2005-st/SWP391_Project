@@ -1,0 +1,5 @@
+cách run project (tạm thời):
+- với back end: run backend check coi connect db có ổn ko (BỎ QUA 4 DÒNG WARNING) nếu có no connection thì restart lại máy
+
+- với front end: run Folder cho SWP_FrontEnd trước để ra: localhost:5173
+		sau đó run folder của khoa (login/register của demo) để ra localhost:5174

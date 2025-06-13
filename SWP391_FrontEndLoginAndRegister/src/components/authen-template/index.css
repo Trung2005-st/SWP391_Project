@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+.authen-template {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url("/images/smoking_cessation_banner.jpg") no-repeat;
+    background-size: cover;
+    background-position: center;
+    
+}
+.authen-template_form{
+    width: 500px;
+    background: transparent;
+    backdrop-filter: blur(15px);
+    border-radius: 10px;
+    padding: 30px 40px;
+    border: 2px solid rgba(255, 255, 255, .2)
+}
+
+*{
+    
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+.authen-template_form h1{
+    font-size: 46px;
+    color: black;
+    font-weight: bold;
+    
+}
+.authen-template_form input{
+   width: 100%;
+   height: 100%;
+   background: transparent;
+   border: none;
+   outline: none;
+   border-radius: 40px;
+}
+
+.authen-template_form a{
+   font-weight: 800;
+  text-shadow:
+    -1px -1px 0 white,
+     1px -1px 0 white,
+    -1px  1px 0 white,
+     1px  1px 0 white;
+}
+
+.authen-template .ant-form-item-explain-error {
+  color: red;      /* Custom error color */
+  font-style: italic;  /* Optional: make it italic */
+  font-size: 14px;     /* Optional: custom size */
+  font-weight: 600;
+}
