@@ -1,12 +1,14 @@
 package com.example.demo2.entity;
 
 import com.example.demo2.enums.Gender;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.validator.constraints.UniqueElements;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -27,13 +29,12 @@ public class User implements UserDetails {
     // Trong User.java
     @ManyToOne
     @JoinColumn(name= "planID")
-    @JsonBackReference
+@JsonIgnoreProperties({"users","userPlanHistories","quitPlans"})
     private MembershipPlan membershipPlan;
 
     @NotBlank(message="Username must not be blank!")
     private String username;
 
-    @NotBlank(message="Password must not be blank!")
     private String password;
 
     @Column(nullable = false)
@@ -44,6 +45,7 @@ public class User implements UserDetails {
 
     private Date joinDate;
 
+    @Email(message = "Invalid Email!")
     private String email;
 
     private Integer isVerified;

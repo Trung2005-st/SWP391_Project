@@ -30,6 +30,9 @@ public class Filter extends OncePerRequestFilter {
     @Qualifier("handlerExceptionResolver")
     private HandlerExceptionResolver handleResolver;
 
+    @Autowired
+    private TokenService tokenService;
+
     private final List<String> PUBLIC_API = List.of(
             "POST:/api/register",
             "POST:/api/login",
@@ -41,10 +44,13 @@ public class Filter extends OncePerRequestFilter {
             "PUT:/api/membership/{planID}",
             "DELETE:/api/quitPlan/{quitID}",
             "POST:/api/quitPlan",
-            "PUT:/api/quitPlan/{quitID}"
+            "PUT:/api/quitPlan/{quitID}",
+            "POST:/api/forgot-password",
+            "DELETE:/api/coach/{coachID}",
+            "POST:/api/coach",
+            "PUT:/api/coach/{coachID}"
     );
-    @Autowired
-    private TokenService tokenService;
+
 
     public boolean isPublicAPI(String uri, String method){
         //URL: http:localhost:8080/api/users

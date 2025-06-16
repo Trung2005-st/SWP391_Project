@@ -25,12 +25,7 @@ public class Demo2Application {
         SpringApplication.run(Demo2Application.class, args);
     }
 
-    @EventListener(ApplicationReadyEvent.class)
-    public void sendEmail(){
-        mailSenderService.sendEmail("ngthanhtrung302005@gmail.com",
-                "This is Trung",
-                createRandomPass());;
-    }
+
 
     public String createRandomPass(){
         Random rand= new Random();

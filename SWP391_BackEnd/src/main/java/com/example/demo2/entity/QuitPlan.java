@@ -20,7 +20,7 @@ public class QuitPlan {
 
      @ManyToOne
      @JoinColumn(name = "planID",nullable = false)
-     @JsonIgnore
+     @JsonBackReference
      private MembershipPlan plan;
 
      private Date startDate;

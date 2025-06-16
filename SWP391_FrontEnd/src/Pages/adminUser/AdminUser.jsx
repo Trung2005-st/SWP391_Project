@@ -10,81 +10,49 @@ import {
   Table,
 } from "antd";
 import { useForm } from "antd/es/form/Form";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import AppLayout from "../../components/layout/AppLayout";
+import api from "../../configs/axios";
 
 function AdminUser() {
+  const [originalData, setOriginalData] = useState([]); // lưu bản gốc
   const [dataSource, setDataSource] = useState([]);
-  const [open, setOpen] = useState(false);
-  const [form] = useForm();
-  const [editingUserID, setEditingUserID] = useState(null); // string | null
   const [plans, setPlans] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [editingUserID, setEditingUserID] = useState(null);
+  const [form] = useForm();
 
   const columns = [
-    {
-      title: "Id",
-      dataIndex: "userID",
-      key: "userID",
-    },
-    {
-      title: "Name",
-      dataIndex: "username",
-      key: "username",
-    },
+    { title: "Id", dataIndex: "userID", key: "userID" },
+    { title: "Name", dataIndex: "username", key: "username" },
     {
       title: "Gender",
       dataIndex: "gender",
       key: "gender",
       render: (value) => {
-        switch (value) {
-          case "MALE":
-            return "Male";
-          case "FEMALE":
-            return "Female";
-          default:
-            return "Unknown";
-        }
+        if (value === "MALE") return "Male";
+        if (value === "FEMALE") return "Female";
+        return "Unknown";
       },
     },
-    {
-      title: "Email",
-      dataIndex: "email",
-      key: "email",
-    },
+    { title: "Email", dataIndex: "email", key: "email" },
     {
       title: "Role",
       dataIndex: "role",
       key: "role",
       render: (value) => {
-        switch (value) {
-          case 1:
-            return "Member";
-          case 2:
-            return "Coach";
-          case 3:
-            return "Admin";
-          default:
-            return "Unknown";
-        }
+        if (value === 1) return "Member";
+        if (value === 2) return "Coach";
+        if (value === 3) return "Admin";
+        return "Unknown";
       },
     },
     {
-      title: "CreateDate",
+      title: "Create/Update Date",
       dataIndex: "joinDate",
       key: "joinDate",
       render: (value) => {
-        if (!value) {
-          const date = new Date(value);
-          return date.toLocaleDateString("vi-VN", {
-            year: "numeric",
-            month: "2-digit",
-            day: "2-digit",
-            hour: "2-digit",
-            minute: "2-digit",
-            second: "2-digit",
-          });
-        }
+        if (!value) return "";
         const date = new Date(value);
         return date.toLocaleDateString("vi-VN", {
           year: "numeric",
@@ -100,22 +68,13 @@ function AdminUser() {
       title: "Is Verified",
       dataIndex: "isVerified",
       key: "isVerified",
-      render: (values) => {
-        if (values == 1) {
-          return "Yes";
-        } else {
-          return "No";
-        }
-      },
+      render: (val) => (val === 1 ? "Yes" : "No"),
     },
     {
       title: "Membership",
       dataIndex: ["membershipPlan", "name"],
       key: "membershipPlan",
-      render: (value, record) => {
-        console.log("User record:", record);
-        return record.membershipPlan?.name || "No Plan";
-      },
+      render: (_, record) => record.membershipPlan?.name || "No Plan",
     },
     {
       title: "Actions",
@@ -140,27 +99,29 @@ function AdminUser() {
   ];
 
   useEffect(() => {
-    fetchUser();
     fetchPlans();
+    fetchUser();
   }, []);
 
   const fetchPlans = async () => {
     try {
-      const res = await axios.get("http://localhost:8080/api/membership"); // tạo API nếu chưa có
+      const res = await api.get("/membership");
       setPlans(res.data);
     } catch (err) {
-      console.log(err.message + plans);
+      console.error("Failed to load membership plans:", err);
       message.error("Failed to load membership plans!");
     }
   };
 
   const fetchUser = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/api/users");
-      setDataSource(response.data);
-    } catch (error) {
-      console.error("Fetch users failed:", error);
+      const res = await api.get("/users");
+      setOriginalData(res.data);
+      setDataSource(res.data);
+    } catch (err) {
+      console.error("Fetch users failed:", err);
       message.error("Failed to load users!");
+      setOriginalData([]);
       setDataSource([]);
     }
   };
@@ -173,11 +134,11 @@ function AdminUser() {
 
   const onDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:8080/api/users/${id}`);
+      await api.delete(`/users/${id}`);
       message.success("Deleted successfully!");
       fetchUser();
-    } catch (error) {
-      console.error("Delete failed:", error);
+    } catch (err) {
+      console.error("Delete failed:", err);
       message.error("Delete failed!");
     }
   };
@@ -185,42 +146,35 @@ function AdminUser() {
   const onAddOrUpdate = async (values) => {
     try {
       if (editingUserID) {
-        await axios.put(
-          `http://localhost:8080/api/users/${editingUserID}`,
-          values
-        );
+        await api.put(`/users/${editingUserID}`, values);
         message.success("User updated successfully!");
       } else {
-        await axios.post("http://localhost:8080/api/users", values);
+        await api.post("/users", values);
         message.success("User added successfully!");
       }
       form.resetFields();
       setOpen(false);
       setEditingUserID(null);
       fetchUser();
-    } catch (error) {
-      console.error(
-        "Error with Axios request:",
-        error.response ? error.response.data : error.message
-      );
+    } catch (err) {
+      console.error("Error with Axios request:", err.response || err);
       message.error("Operation failed!");
     }
   };
 
-  const searchUserById = async (userId) => {
-    const trimmedUserId = userId.trim();
-    if (!trimmedUserId) {
-      // Nếu input rỗng thì load lại tất cả user
-      fetchUser();
+  const searchUserById = (userId) => {
+    const trimmed = userId.trim();
+    if (!trimmed) {
+      // nếu rỗng thì trả về all
+      setDataSource(originalData);
       return;
     }
-    try {
-      const response = await axios.get(
-        `http://localhost:8080/api/users/${trimmedUserId}`
-      );
-      setDataSource([response.data]);
-    } catch (error) {
-      console.error("Search user failed:", error);
+    const filtered = originalData.filter(
+      (item) => String(item.userID) === trimmed
+    );
+    if (filtered.length) {
+      setDataSource(filtered);
+    } else {
       message.error("User not found!");
       setDataSource([]);
     }
@@ -228,127 +182,129 @@ function AdminUser() {
 
   return (
     <AppLayout>
-      <div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            marginBottom: 16,
-          }}
-        >
-          <Input.Search
-            placeholder="Enter user ID"
-            allowClear
-            style={{ width: 300 }}
-            onSearch={searchUserById}
-          />
-
-          <Button type="primary" onClick={() => setOpen(true)}>
-            Add User
-          </Button>
-        </div>
-        <Table
-          dataSource={dataSource}
-          columns={columns}
-          pagination={{ pageSize: 6 }}
-          rowKey="userID"
+      <div
+        style={{
+          marginBottom: 16,
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
+        <Input.Search
+          placeholder="Enter user ID"
+          allowClear
+          style={{ width: 300 }}
+          onSearch={searchUserById}
         />
+        <Button type="primary" onClick={() => setOpen(true)}>
+          Add User
+        </Button>
+      </div>
 
-        <Modal
-          title={editingUserID ? "Edit User" : "Add User"}
-          open={open}
-          onCancel={() => {
-            setOpen(false);
-            form.resetFields();
-            setEditingUserID(null);
-          }}
-          onOk={() => form.submit()}
-          destroyOnClose
-        >
-          <Form layout="vertical" onFinish={onAddOrUpdate} form={form}>
-            <Form.Item
-              label="Name"
-              name="username"
-              rules={[{ required: true, message: "Please input your name!" }]}
-            >
-              <Input />
-            </Form.Item>
+      <Table
+        dataSource={dataSource}
+        columns={columns}
+        pagination={{ pageSize: 6 }}
+        rowKey="userID"
+      />
+
+      <Modal
+        title={editingUserID ? "Edit User" : "Add User"}
+        open={open}
+        onCancel={() => {
+          setOpen(false);
+          form.resetFields();
+          setEditingUserID(null);
+        }}
+        onOk={() => form.submit()}
+      >
+        <Form layout="vertical" form={form} onFinish={onAddOrUpdate}>
+          <Form.Item
+            label="Name"
+            name="username"
+            rules={[{ required: true, message: "Please input your name!" }]}
+          >
+            <Input />
+          </Form.Item>
+
+          {!editingUserID && (
             <Form.Item
               label="Password"
               name="password"
               rules={[
+                { required: true, message: "You must input your password" },
                 {
                   pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/,
                   message:
-                    "Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, and one number.",
+                    "Password must be at least 8 characters long, contain an uppercase, lowercase, number and special character.",
                 },
               ]}
             >
               <Input.Password />
             </Form.Item>
-            <Form.Item
-              label="Email"
-              name="email"
-              rules={[
-                {
-                  required: true,
-                  type: "email",
-                  message: "Please input a valid email!",
-                },
-              ]}
-            >
-              <Input />
-            </Form.Item>
-            <Form.Item
-              label="Gender"
-              name="gender"
-              rules={[
-                { required: true, message: "Please select your gender!" },
-              ]}
-            >
-              <Select>
-                <Select.Option value="MALE">Male</Select.Option>
-                <Select.Option value="FEMALE">Female</Select.Option>
-              </Select>
-            </Form.Item>
-            <Form.Item
-              label="Role"
-              name="role"
-              rules={[{ required: true, message: "Please select your role!" }]}
-            >
-              <Select>
-                <Select.Option value={1}>Member</Select.Option>
-                <Select.Option value={2}>Coach</Select.Option>
-                <Select.Option value={3}>Admin</Select.Option>
-              </Select>
-            </Form.Item>
-            <Form.Item
-              label="Verify"
-              name="isVerified"
-              rules={[
-                { required: true, message: "Please select verify user!" },
-              ]}
-            >
-              <Select>
-                <Select.Option value={1}>Yes</Select.Option>
-                <Select.Option value={0}>No</Select.Option>
-              </Select>
-            </Form.Item>
-            <Form.Item
-              label="Membership Plan"
-              name={["membershipPlan", "planID"]}
-            >
-              <Select placeholder="Select a plan">
-                {plans.map((plan) => (
-                  <Select.Option key={plan.planID} value={plan.planID}>
-                    {plan.name}
-                  </Select.Option>
-                ))}
-              </Select>
-            </Form.Item>
-          </Form>
-        </Modal>
-      </div>
+          )}
+
+          <Form.Item
+            label="Email"
+            name="email"
+            rules={[
+              {
+                required: true,
+                type: "email",
+                message: "Please input a valid email!",
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+
+          <Form.Item
+            label="Gender"
+            name="gender"
+            rules={[{ required: true, message: "Please select your gender!" }]}
+          >
+            <Select>
+              <Select.Option value="MALE">Male</Select.Option>
+              <Select.Option value="FEMALE">Female</Select.Option>
+            </Select>
+          </Form.Item>
+
+          <Form.Item
+            label="Role"
+            name="role"
+            rules={[{ required: true, message: "Please select your role!" }]}
+          >
+            <Select>
+              <Select.Option value={1}>Member</Select.Option>
+              <Select.Option value={2}>Coach</Select.Option>
+              <Select.Option value={3}>Admin</Select.Option>
+            </Select>
+          </Form.Item>
+
+          <Form.Item
+            label="Verify"
+            name="isVerified"
+            rules={[{ required: true, message: "Please select verify user!" }]}
+          >
+            <Select>
+              <Select.Option value={1}>Yes</Select.Option>
+              <Select.Option value={0}>No</Select.Option>
+            </Select>
+          </Form.Item>
+
+          <Form.Item
+            label="Membership Plan"
+            name={["membershipPlan", "planID"]}
+          >
+            <Select placeholder="Select a plan">
+              {plans.map((plan) => (
+                <Select.Option key={plan.planID} value={plan.planID}>
+                  {plan.name}
+                </Select.Option>
+              ))}
+            </Select>
+          </Form.Item>
+        </Form>
+      </Modal>
     </AppLayout>
   );
 }

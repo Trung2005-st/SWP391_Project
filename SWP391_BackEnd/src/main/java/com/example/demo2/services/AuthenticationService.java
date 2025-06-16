@@ -2,8 +2,8 @@ package com.example.demo2.services;
 
 import com.example.demo2.entity.User;
 import com.example.demo2.exception.AuthenticationException;
-import com.example.demo2.model.AccountResponse;
-import com.example.demo2.model.loginRequest;
+import com.example.demo2.model.response.AccountResponse;
+import com.example.demo2.model.request.loginRequest;
 import com.example.demo2.repository.AuthenticationRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +21,6 @@ import java.util.Date;
 //extend cho quyền user
 public class AuthenticationService implements UserDetailsService {
 
-    @Autowired
-    AuthenticationRepository authentication;
 
     @Autowired
     PasswordEncoder passwordEncoder;
@@ -43,7 +41,7 @@ public class AuthenticationService implements UserDetailsService {
         account.setPassword(passwordEncoder.encode(account.getPassword()));
         account.setJoinDate(new Date());
         account.setRole(1);
-        User acc= authentication.save(account);
+        User acc= authenticationRepository.save(account);
         return acc;
     }
 

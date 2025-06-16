@@ -1,15 +1,13 @@
 package com.example.demo2.api;
 
 import com.example.demo2.entity.User;
-import com.example.demo2.model.AccountResponse;
-import com.example.demo2.model.loginRequest;
+import com.example.demo2.model.response.AccountResponse;
+import com.example.demo2.model.request.loginRequest;
 import com.example.demo2.services.AuthenticationService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Date;
 
 @CrossOrigin("*")
 @RestController

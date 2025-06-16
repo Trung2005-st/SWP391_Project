@@ -10,12 +10,18 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "antd": "^5.25.4",
+    "@reduxjs/toolkit": "^2.8.2",
+    "antd": "^5.26.0",
     "axios": "^1.9.0",
+    "boxicons": "^2.1.4",
     "dayjs": "^1.11.13",
     "react": "^19.1.0",
+    "react-boxicons": "^0.0.26",
     "react-dom": "^19.1.0",
-    "react-router-dom": "^7.6.2"
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^7.6.2",
+    "react-toastify": "^11.0.5",
+    "redux-persist": "^6.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",

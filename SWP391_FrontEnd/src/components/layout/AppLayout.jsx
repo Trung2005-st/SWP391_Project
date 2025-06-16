@@ -10,6 +10,8 @@ import { Button, Layout, Menu, theme } from "antd";
 import AdminUser from "../../Pages/adminUser/AdminUser";
 import Navbar from "./Navbar";
 import { Navigate, useNavigate } from "react-router-dom";
+import { ROUTES } from "../../configs/routes";
+import { BookOutlined, ControlOutlined } from "@ant-design/icons/lib/icons";
 const { Header, Sider, Content } = Layout;
 const AppLayout = ({ children }) => {
   const [collapsed, setCollapsed] = useState(false);
@@ -30,19 +32,30 @@ const AppLayout = ({ children }) => {
               key: "1",
               icon: <UserOutlined />,
               label: "User management",
-              onClick: () => navigate("/adminUser"),
+              onClick: () => navigate(ROUTES.ADMIN_USER),
             },
             {
               key: "2",
               icon: <VideoCameraOutlined />,
               label: "Membership management",
-              onClick: () => navigate("/adminMembership"),
+              onClick: () => navigate(ROUTES.ADMIN_MEMBERSHIP),
             },
             {
               key: "3",
               icon: <UploadOutlined />,
               label: "Plan management",
-              onClick: () => navigate("/adminQuit"),
+              onClick: () => navigate(ROUTES.ADMIN_QUIT),
+            },
+            {
+              key: "4",
+              icon: <ControlOutlined></ControlOutlined>,
+              label: "Coach registeration",
+            },
+            {
+              key: "5",
+              icon: <BookOutlined></BookOutlined>,
+              label: "Coach Profile",
+              onClick: () => navigate(ROUTES.ADMIN_COACHPROFILE),
             },
           ]}
         />

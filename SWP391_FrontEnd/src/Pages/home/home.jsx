@@ -2,6 +2,8 @@ import React from "react";
 import "../../globalCSS/style.css";
 import "../../globalCSS/globals.css";
 import "../../globalCSS/styleguide.css";
+import { ROUTES } from "../../configs/routes";
+import { NavLink } from "react-router-dom";
 
 function Home() {
   return (
@@ -24,20 +26,46 @@ function Home() {
               <div className="navbar">
                 <div className="div">Home</div>
                 <div className="text-wrapper-2">
-                  <a href="/src/Pages/adminUser/adminUser.html">Leaderboard</a>
+                  <NavLink
+                    to={ROUTES.ADMIN_USER}
+                    className={({ isActive }) =>
+                      isActive ? "nav-active" : "nav-inactive"
+                    }
+                  >
+                    Leaderboard
+                  </NavLink>
                 </div>
                 <div className="text-wrapper-3">
-                  <a href="/src/Pages/adminMembership/adminMembership.html">
+                  <NavLink
+                    to={ROUTES.ADMIN_MEMBERSHIP}
+                    className={({ isActive }) =>
+                      isActive ? "nav-active" : "nav-inactive"
+                    }
+                  >
                     Progress
-                  </a>
+                  </NavLink>
                 </div>
-                <div className="text-wrapper-4">Community</div>
+                <div className="text-wrapper-4">
+                  <NavLink
+                    to={ROUTES.ADMIN_QUIT}
+                    className={({ isActive }) =>
+                      isActive ? "nav-active" : "nav-inactive"
+                    }
+                  >
+                    Community
+                  </NavLink>
+                </div>
               </div>
-              <a href="http://localhost:5174/login">
+              <NavLink
+                to={ROUTES.LOGIN}
+                className={({ isActive }) =>
+                  isActive ? "nav-active" : "nav-inactive"
+                }
+              >
                 <button className="start-btn">
                   <div className="text-wrapper-5">Get Started</div>
                 </button>
-              </a>
+              </NavLink>
             </div>
           </header>
           <div className="hero-section">

@@ -57,9 +57,9 @@ public class UserAPI{
         User u= userRepository.findById(userId).orElseThrow(
                 ()-> new AccountNotFoundException("Account not found!")
         );
+        u.setJoinDate(new Date());
         u.setUsername(user.getUsername());
         u.setEmail(user.getEmail());
-        u.setPassword(passwordEncoder.encode(user.getPassword()));
         u.setGender(user.getGender());
         u.setRole(user.getRole());
         u.setIsVerified(user.getIsVerified());

@@ -1,23 +1,52 @@
 package com.example.demo2.services;
 
+import com.example.demo2.dto.EmailDetail;
+import jakarta.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
 
 @Service
 public class MailSenderService {
+
     @Autowired
-    private JavaMailSender mailSender;
+    private TemplateEngine templateEngine;
 
-    public void sendEmail(String to, String subject, String body) {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("ngtrungthanh302005@gmail.com");
-        message.setTo(to);
-        message.setText(body);
-        message.setSubject(subject);
-        mailSender.send(message);
+    @Autowired
+    private JavaMailSender javaMailSender;
 
-        System.out.println("Send mail successful");
+
+    public void  sendMail(EmailDetail emailDetail){
+
+        try{
+
+            Context context = new Context();
+
+            context.setVariable("name", emailDetail.getRecipient());
+            context.setVariable("link", emailDetail.getLink());
+            context.setVariable("button", "Reset Password"); // assuming your template has [[${button}]]
+
+
+            String html = templateEngine.process("emailtemplate",context);
+
+            // Creating a simple mail message
+            MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage);
+
+            // Setting up necessary details
+            mimeMessageHelper.setFrom("ngtrungthanh302005@gmail.com");
+            mimeMessageHelper.setTo(emailDetail.getRecipient());
+            mimeMessageHelper.setSubject(emailDetail.getSubject());
+            mimeMessageHelper.setText(html, true);
+
+            javaMailSender.send(mimeMessage);
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
+
 }

@@ -1,5 +1,6 @@
 package com.example.demo2.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -30,5 +31,6 @@ public class MembershipPlan {
     private List<UserPlanHistory> userPlanHistories;
 
     @OneToMany(mappedBy = "plan")
+    @JsonManagedReference
     private List<QuitPlan> quitPlans;
 }
