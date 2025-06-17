@@ -43,7 +43,7 @@ public class ForgotPasswordService {
             emailDetail.setRecipient(user.getEmail());
             emailDetail.setSubject("Reset Password");
             // đẩy cái FE resetPassword vô đây
-            emailDetail.setLink("https://your-frontend/reset?token=" + tokenService.generateToken(user));
+            emailDetail.setLink("http://localhost:5173/reset-password?token=" + tokenService.generateToken(user));
             mailSenderService.sendMail(emailDetail);
 
         }

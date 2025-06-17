@@ -1,7 +1,7 @@
 import React from "react";
-import "../../globalCSS/style.css";
-import "../../globalCSS/globals.css";
-import "../../globalCSS/styleguide.css";
+import "./globalCSS/style.css";
+import "./globalCSS/globals.css";
+import "./globalCSS/styleguide.css";
 import { ROUTES } from "../../configs/routes";
 import { NavLink } from "react-router-dom";
 

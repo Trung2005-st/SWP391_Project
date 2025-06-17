@@ -31,7 +31,7 @@ function RegisterForm() {
   };
 
   return (
-    <div className="authen-template_form">
+    <div>
       <h1>Register</h1>
       <Form
         name="basic"

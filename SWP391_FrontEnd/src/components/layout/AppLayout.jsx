@@ -7,11 +7,14 @@ import {
   VideoCameraOutlined,
 } from "@ant-design/icons";
 import { Button, Layout, Menu, theme } from "antd";
-import AdminUser from "../../Pages/adminUser/AdminUser";
 import Navbar from "./Navbar";
 import { Navigate, useNavigate } from "react-router-dom";
 import { ROUTES } from "../../configs/routes";
-import { BookOutlined, ControlOutlined } from "@ant-design/icons/lib/icons";
+import {
+  BookOutlined,
+  ControlOutlined,
+  DashOutlined,
+} from "@ant-design/icons/lib/icons";
 const { Header, Sider, Content } = Layout;
 const AppLayout = ({ children }) => {
   const [collapsed, setCollapsed] = useState(false);
@@ -30,29 +33,36 @@ const AppLayout = ({ children }) => {
           items={[
             {
               key: "1",
+              icon: <DashOutlined></DashOutlined>,
+              label: "Dashboard",
+              onClick: () => navigate(ROUTES.ADMIN_DASHBOARD),
+            },
+            {
+              key: "2",
               icon: <UserOutlined />,
               label: "User management",
               onClick: () => navigate(ROUTES.ADMIN_USER),
             },
             {
-              key: "2",
+              key: "3",
               icon: <VideoCameraOutlined />,
               label: "Membership management",
               onClick: () => navigate(ROUTES.ADMIN_MEMBERSHIP),
             },
             {
-              key: "3",
+              key: "4",
               icon: <UploadOutlined />,
               label: "Plan management",
               onClick: () => navigate(ROUTES.ADMIN_QUIT),
             },
             {
-              key: "4",
+              key: "5",
               icon: <ControlOutlined></ControlOutlined>,
               label: "Coach registeration",
+              onClick: () => navigate(ROUTES.ADMIN_REGISTER),
             },
             {
-              key: "5",
+              key: "6",
               icon: <BookOutlined></BookOutlined>,
               label: "Coach Profile",
               onClick: () => navigate(ROUTES.ADMIN_COACHPROFILE),

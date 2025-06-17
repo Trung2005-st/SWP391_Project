@@ -41,7 +41,7 @@ function LoginForm() {
     console.log("Failed:", errorInfo);
   };
   return (
-    <div className="authen-template_form">
+    <div>
       <h1>Login</h1>
       <Form
         name="basic"

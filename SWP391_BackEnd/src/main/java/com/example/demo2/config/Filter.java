@@ -48,8 +48,14 @@ public class Filter extends OncePerRequestFilter {
             "POST:/api/forgot-password",
             "DELETE:/api/coach/{coachID}",
             "POST:/api/coach",
-            "PUT:/api/coach/{coachID}"
-    );
+            "PUT:/api/coach/{coachID}",
+            "POST:/api/reset-password",
+            "POST:/api/coach-register-info",
+            "PUT:/api/coach-register-info/{id}",
+            "DELETE:/api/coach-register-info/{id}",
+            "POST:/api/coach-register-info/{id}/approve",
+            "POST:/api/coach-register-info/{id}/reject"
+            );
 
 
     public boolean isPublicAPI(String uri, String method){
@@ -75,48 +81,66 @@ public class Filter extends OncePerRequestFilter {
     }
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        //function sẽ run mỗi khi có request front-end sang đây
-        //cho phep tuy cap cac lop controller
-        String uri= request.getRequestURI();
-        String method= request.getMethod();
+    protected void doFilterInternal(HttpServletRequest request,
+                                    HttpServletResponse response,
+                                    FilterChain filterChain)
+            throws ServletException, IOException {
+        String uri = request.getRequestURI();
+        String method = request.getMethod();
 
-        if (isPublicAPI(uri,method)){
-            //nếu kết quả check là public api thì cho qua luôn khỏi check token
+        if (isPublicAPI(uri, method)) {
             filterChain.doFilter(request, response);
-        } else {
-            //xác thực
-            String token = getToken(request);
-            if (token == null) {
-                //nếu ko có token
-                handleResolver.resolveException(request, response, null, new AuthenticationException("Empty token!"));
-                return;
-            }
-            //có token
-            //verify token
-            User account;
-            try{
-                //từ token => user là ai
-                account = tokenService.extractAccount(token);
-            }catch(ExpiredJwtException expiredJwtException){
-                //token hết hạn
-                handleResolver.resolveException(request, response, null, new AuthenticationException("Expired token!"));
-                return;
-            }catch(MalformedJwtException malformedJwtException){
-                //token không đúng
-                handleResolver.resolveException(request, response, null, new AuthenticationException("Malformed token!"));
-                return;
-            }
-            //token đúng
-            UsernamePasswordAuthenticationToken
-                    authenToken =
-                    new UsernamePasswordAuthenticationToken(account, token, account.getAuthorities());
-            authenToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-            SecurityContextHolder.getContext().setAuthentication(authenToken);
-            //token ok, cho vào
-            filterChain.doFilter(request, response);
+            return;
         }
+
+        String token = getToken(request);
+        if (token == null) {
+            handleResolver.resolveException(
+                    request,
+                    response,
+                    null,
+                    new AuthenticationException("Empty token!")
+            );
+            return;
+        }
+
+        User account;
+        try {
+            // từ token ⇒ load User trực tiếp
+            account = tokenService.extractAccount(token);
+        } catch (ExpiredJwtException e) {
+            handleResolver.resolveException(
+                    request,
+                    response,
+                    null,
+                    new AuthenticationException("Expired token!")
+            );
+            return;
+        } catch (MalformedJwtException e) {
+            handleResolver.resolveException(
+                    request,
+                    response,
+                    null,
+                    new AuthenticationException("Malformed token!")
+            );
+            return;
+        }
+
+        UsernamePasswordAuthenticationToken authenToken =
+                new UsernamePasswordAuthenticationToken(
+                        account,
+                        token,
+                        account.getAuthorities()
+                );
+        authenToken.setDetails(
+                new WebAuthenticationDetailsSource().buildDetails(request)
+        );
+        SecurityContextHolder.getContext().setAuthentication(authenToken);
+
+        filterChain.doFilter(request, response);
     }
+
+
 
     public String getToken(HttpServletRequest request){
         String authHeader= request.getHeader("Authorization");

@@ -1,0 +1,12 @@
+.forgot-password-page h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 25px !important;
+}
+.forgot-password-page p {
+  margin-bottom: 20px;
+  font-weight: 500;
+  color: white;
+  text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black,
+    1px 1px 0 black;
+}

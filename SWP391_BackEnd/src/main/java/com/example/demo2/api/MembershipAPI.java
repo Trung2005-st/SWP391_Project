@@ -2,7 +2,7 @@ package com.example.demo2.api;
 
 import com.example.demo2.entity.MembershipPlan;
 import com.example.demo2.exception.MembershipPlanNotFoundException;
-import com.example.demo2.repository.MembershipPlanRespository;
+import com.example.demo2.repository.MembershipPlanRepository;
 import jakarta.validation.Valid;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ import java.util.List;
 @Data
 public class MembershipAPI {
     @Autowired
-    MembershipPlanRespository membershipPlanRespository;
+    MembershipPlanRepository membershipPlanRespository;
 
     List<MembershipPlan> membershipPlanList = new ArrayList<>();
 

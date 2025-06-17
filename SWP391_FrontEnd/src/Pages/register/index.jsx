@@ -2,7 +2,7 @@ import React from "react";
 import AuthenTemplate from "../../components/authen-template";
 
 function RegisterPage() {
-  return <AuthenTemplate isLogin={false}></AuthenTemplate>;
+  return <AuthenTemplate page="register" />;
 }
 
 export default RegisterPage;
