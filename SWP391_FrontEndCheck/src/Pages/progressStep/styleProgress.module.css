@@ -1,0 +1,776 @@
+/* PAGE WRAPPER */
+.page {
+  background: #e6fef1;
+  padding: 32px 16px;
+  display: flex;
+  justify-content: center;
+}
+
+/* WHITE CARD */
+.card {
+  max-width: 1320px;
+  width: 100%;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 50px;
+  box-shadow: 0 5px 16px rgba(8, 15, 52, 0.06);
+  overflow: hidden;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.logoImg {
+  width: 48px;
+  height: 48px;
+}
+.logoText {
+  font-family: "DM Sans", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #16a34a;
+}
+.nav {
+  display: flex;
+  gap: 32px;
+}
+.navItem {
+  text-decoration: none;
+  font-family: "DM Sans", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #374151;
+}
+.activeNav {
+  color: #16a34a;
+}
+.startBtn {
+  background: #16a34a;
+  color: #ffffff;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 24px;
+  cursor: pointer;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.groupBtn {
+  color: #ffffff;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 24px;
+  cursor: pointer;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* MAIN */
+.main {
+  padding: 24px;
+}
+.title {
+  font-family: "DM Sans", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1f2041;
+  margin-bottom: 8px;
+}
+.subtitle {
+  font-family: "DM Sans", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #6f6090;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+/* PROGRESS BAR */
+.progressBar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 32px;
+}
+.step,
+.stepActive {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 500;
+}
+.step {
+  background: #f3f4f6;
+  color: #6f6090;
+}
+.stepActive {
+  background: #16a34a;
+  color: #ffffff;
+}
+.bar,
+.barActive {
+  flex: 1;
+  height: 4px;
+  margin: 0 8px;
+  border-radius: 2px;
+}
+.bar {
+  background: #e5e7eb;
+}
+.barActive {
+  background: #16a34a;
+}
+
+.GetStart {
+  background: #16a34a;
+}
+
+/* QUESTION */
+.questionSection {
+  margin-bottom: 24px;
+  text-align: center;
+}
+.questionTitle {
+  font-family: "DM Sans", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1f2041;
+  margin-bottom: 8px;
+}
+.questionDesc {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.9rem;
+  color: #6f6090;
+  line-height: 1.5;
+}
+
+/* OPTIONS GRID */
+.options,
+.options2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(240px, 1fr));
+  gap: 16px;
+  justify-content: center;
+  margin: 0 auto 32px;
+}
+
+/* OPTION CARD */
+.option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 24px;
+  background: #ffffff;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+.option:hover {
+  border-color: #cbd5e1;
+}
+
+/* SELECTED STATE */
+.selected {
+  border-color: #16a34a;
+}
+
+/* HIDE NATIVE RADIO */
+.radioInput {
+  display: none;
+}
+
+/* CUSTOM RADIO CIRCLE */
+.customRadio {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #e5e7eb;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.selected .customRadio {
+  border-color: #16a34a;
+  background: #16a34a;
+}
+
+/* FOOTER BUTTON */
+.footer {
+  display: flex;
+  justify-content: flex-end;
+}
+.nextBtn {
+  background: #16a34a;
+  color: #ffffff;
+  border: none;
+  padding: 12px 32px;
+  border-radius: 24px;
+  cursor: pointer;
+  font-family: "DM Sans", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* Nút quay lại bước trước */
+.prevBtn {
+  background: transparent;
+  color: #16a34a;
+  border: 2px solid #16a34a;
+  padding: 8px 20px;
+  border-radius: 24px;
+  cursor: pointer;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* INPUTS ROW: 2 inputGroup cạnh nhau, căn giữa */
+.inputsRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+/* Mỗi nhóm label + input */
+.inputGroup {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 12px 16px;
+  flex: 1 1 300px; /* mỗi inputGroup tối thiểu 300px */
+}
+
+/* Text label trước/sau input */
+.inputLabel {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.9rem;
+  color: #6f6090;
+}
+
+/* Input số */
+.inputField {
+  width: 80px;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.9rem;
+  color: #170f49;
+  text-align: center;
+  background: #f9fafb;
+}
+
+/* FOOTER BUTTONS: Previous / Next */
+.footerButtons {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+/* Add/update at the end of src/Pages/progressStep/styleProgress.module.css */
+
+/* Step 3: reasons grid */
+.reasonsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin: 32px auto;
+  max-width: 800px;
+}
+
+/* Card for each reason */
+.reasonCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px; /* tăng padding */
+  background: #ffffff;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  cursor: pointer;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+  text-align: center;
+}
+
+/* Hover state: nhẹ màu xanh */
+.reasonCard:hover {
+  border-color: rgba(22, 163, 74, 0.3);
+}
+
+/* Selected state: đậm màu xanh + shadow */
+.reasonCard.selected {
+  border-color: #16a34a;
+  box-shadow: 0 6px 16px rgba(22, 163, 74, 0.4);
+}
+.reasonCard.selected:hover {
+  box-shadow: 0 8px 20px rgba(22, 163, 74, 0.5);
+}
+
+/* Hide native checkbox */
+.checkboxInput {
+  display: none;
+}
+
+/* Icon size & spacing */
+.reasonIcon {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 16px;
+}
+
+/* Label spacing */
+.reasonLabel {
+  margin-top: 12px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.9rem;
+  color: #1f2041;
+}
+
+/* Add to styleProgress.module.css */
+.triggersGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin: 32px auto;
+  max-width: 900px;
+}
+.triggerCard {
+  background: #fff;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 24px;
+}
+.triggerTitle {
+  font-family: "DM Sans", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1f2041;
+  margin-bottom: 16px;
+}
+.triggerList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.triggerItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.9rem;
+  color: #374151;
+  cursor: pointer;
+}
+.checkboxInput {
+  display: none;
+}
+.customCheckbox {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #e5e7eb;
+  border-radius: 4px;
+  position: relative;
+  transition:
+    border-color 0.2s,
+    background-color 0.2s;
+}
+.checked {
+  background-color: #16a34a;
+  border-color: #16a34a;
+}
+.checked::after {
+  content: "\2713";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 12px;
+}
+
+/* Add to styleProgress.module.css */
+
+/* Step 4: triggers grid */
+.triggersGrid {
+  /* full width within card */
+  width: 100%;
+  display: grid;
+  /* responsive 2 columns, min 280px each */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 32px; /* tăng khoảng cách giữa các ô */
+  /* no extra margins, fits card padding */
+}
+
+/* Card container for each trigger group */
+.triggerCard {
+  background: #ffffff;
+  border: 2px solid #e5e7eb;
+  border-radius: 16px;
+  /* tăng padding để nội dung không sát viền */
+  padding: 40px 48px;
+  box-shadow: 0 5px 16px rgba(8, 15, 52, 0.06);
+}
+
+/* Title of trigger group */
+.triggerTitle {
+  font-family: "DM Sans", sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #1f2041;
+  margin-bottom: 24px;
+}
+
+/* List inside each group: two columns */
+/* List inside each group: single column */
+.triggerList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Each trigger item: allow wrap */
+.triggerItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.9rem;
+  color: #374151;
+  width: 100%;
+  overflow-wrap: break-word;
+}
+
+/* Custom checkbox should not shrink */
+.customCheckbox {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #e5e7eb;
+  border-radius: 4px;
+  position: relative;
+  transition:
+    border-color 0.2s,
+    background-color 0.2s;
+}
+
+/* Each trigger item */
+.triggerItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.9rem;
+  color: #374151;
+  position: relative;
+}
+
+/* Hide native checkbox */
+.checkboxInput {
+  display: none;
+}
+
+/* custom checkbox square */
+.customCheckbox {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #e5e7eb;
+  border-radius: 4px;
+  position: relative;
+  transition:
+    border-color 0.2s,
+    background-color 0.2s;
+}
+
+/* checked state */
+.checked {
+  background-color: #16a34a;
+  border-color: #16a34a;
+}
+.checked::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 6px;
+  width: 6px;
+  height: 10px;
+  border: solid #ffffff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* Footer buttons (unchanged) */
+.footerButtons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 32px;
+}
+
+/* ——— STEP 5 ——— */
+.step5Groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 32px;
+  margin: 32px 0;
+}
+
+.step5Card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 32px 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.step5CardTitle {
+  font-family: "DM Sans", sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1f2041;
+  margin-bottom: 16px;
+}
+
+.step5List {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.step5Item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+
+.step5Checkbox {
+  display: none;
+}
+
+/* styleProgress.module.css */
+
+/* styleProgress.module.css */
+
+/* mỗi dòng container */
+.step5Item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+/* ô checkbox */
+.step5Custom {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #e5e7eb;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    border-color 0.2s,
+    background-color 0.2s;
+}
+
+/* checked state */
+.step5CustomChecked {
+  background-color: #16a34a;
+  border-color: #16a34a;
+}
+
+/* SVG check icon */
+.checkIcon {
+  display: block;
+}
+
+/* label text */
+.step5Label {
+  flex: 1;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.9rem;
+  color: #374151;
+  word-break: break-word;
+}
+
+/* Giữ lại footerButtons, prevBtn, nextBtn từ chung */
+/* wrapper */
+.communityWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+/* dropdown container */
+.dropdownMenu {
+  position: absolute;
+  top: calc(100% + 20px); /* đẩy xuống 4px so với đáy navItem */
+  right: -8px; /* đẩy sang phải thêm 8px khỏi mép navItem */
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 12px 0; /* tăng padding để menu giãn rộng ra */
+  min-width: 200px; /* đặt min-width lớn hơn để không quá chật */
+  z-index: 10;
+}
+
+/* từng mục trong dropdown */
+.dropdownItem {
+  display: block;
+  padding: 10px 20px; /* tăng padding để mỗi dòng rộng rãi hơn */
+  font-family: "DM Sans", sans-serif;
+  font-size: 14px;
+  color: #1f2041;
+  text-decoration: none;
+}
+
+.dropdownItem + .dropdownItem {
+  margin-top: 4px; /* khoảng cách giữa 2 dòng */
+}
+
+.dropdownItem:hover {
+  background-color: #f0fdf4;
+  color: #166534;
+}
+.dateCard {
+  width: 100%;
+  background-color: #f8f8f8;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  margin-top: 20px;
+  text-align: left;
+}
+
+.dateTitle {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.datePicker {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.reasonGroup {
+  margin-bottom: 40px;
+}
+
+.reasonGroupTitle {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.reasonRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* đúng 3 cột */
+  gap: 20px;
+}
+
+.healthStatusCard {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  border: 1px solid #e6e6e6;
+}
+
+.healthSection {
+  background-color: #f9fafb;
+  border-radius: 12px;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 1px solid #e5e7eb;
+}
+
+.healthSection h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 12px;
+  color: #111827;
+}
+
+.healthSection label {
+  font-size: 15px;
+  color: #374151;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  margin-top: 4px;
+  padding-left: 4px;
+}
+
+.healthSection input[type="checkbox"]:checked + span,
+.healthSection input[type="radio"]:checked + span {
+  background-color: #2563eb;
+  color: white;
+  border-radius: 6px;
+  padding: 4px 8px;
+}
+
+.healthSection input[type="checkbox"],
+.healthSection input[type="radio"] {
+  accent-color: #2563eb;
+}
+
+.customDropdown {
+  padding: 10px 14px;
+  font-size: 15px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background-color: white;
+  cursor: pointer;
+  appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="gray" height="12" viewBox="0 0 24 24" width="12" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 12px;
+}
+
+/* red outline around the date‐picker when dateError===true */
+.inputError {
+  border: 1px solid red;
+}
+
+/* the little line of red error text under the date input */
+.errorText {
+  color: red;
+  font-size: 0.875rem;
+  margin-top: 4px;
+}

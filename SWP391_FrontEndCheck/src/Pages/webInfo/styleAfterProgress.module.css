@@ -1,0 +1,570 @@
+.pageWrapper {
+  background: #e6fef1;
+  padding: 32px 16px;
+  display: flex;
+  justify-content: center;
+}
+.card {
+  max-width: 1220px;
+  width: 100%;
+  background: #fff;
+  border-radius: 16px;
+  padding: 50px;
+  box-shadow: 0 5px 16px rgba(8, 15, 52, 0.06);
+  overflow: hidden;
+}
+.groupBtn {
+  color: #ffffff;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 24px;
+  cursor: pointer;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f3f4f6;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.logoImg {
+  width: 48px;
+  height: 48px;
+}
+.logoText {
+  font-family: "DM Sans", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #16a34a;
+}
+.nav {
+  display: flex;
+  gap: 32px;
+}
+.navItem {
+  font-family: "DM Sans", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #374151;
+  text-decoration: none;
+}
+.activeNav {
+  color: #16a34a;
+}
+.startBtn {
+  background: #16a34a;
+  color: #fff;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 24px;
+  cursor: pointer;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* MAIN */
+.main {
+  padding-top: 24px;
+}
+.title {
+  font-family: "DM Sans", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1f2041;
+  margin-bottom: 8px;
+}
+.subtitle {
+  font-family: "DM Sans", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #6f6090;
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+/* SUMMARY CARDS */
+.summaryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+  margin-bottom: 48px;
+}
+.summaryCard {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 5px 16px rgba(8, 15, 52, 0.06);
+  text-align: center;
+}
+.summaryIcon {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 12px;
+}
+.summaryValue {
+  font-family: "DM Sans", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2041;
+}
+.summaryLabel {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.9rem;
+  color: #374151;
+  margin: 8px 0;
+}
+.summaryTrend {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+/* DUAL PANEL: checklist + report */
+.dualPanel {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* checklist rộng hơn report */
+  gap: 32px;
+  margin-bottom: 48px;
+}
+.checklistPanel,
+.reportPanel {
+  background: #fff;
+  border-radius: 16px;
+  padding: 32px 24px;
+  box-shadow: 0 5px 16px rgba(8, 15, 52, 0.06);
+}
+.panelTitle {
+  font-family: "DM Sans", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+/* CHECKLIST */
+.stepCard {
+  margin-bottom: 24px;
+}
+.stepCardTitle {
+  font-family: "DM Sans", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+.checklistList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.checklistList li {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px; /* khoảng cách checkbox–label */
+  padding: 8px 0; /* khoảng cách giữa các dòng */
+}
+.checkboxInput {
+  display: none;
+}
+.customCheckbox {
+  width: 24px; /* to hơn */
+  height: 24px;
+  border: 2px solid #e5e7eb;
+  border-radius: 4px;
+  flex-shrink: 0;
+  position: relative;
+  transition:
+    background-color 0.2s,
+    border-color 0.2s;
+}
+.checked {
+  background-color: #16a34a;
+  border-color: #16a34a;
+}
+.checked::after {
+  content: "✔";
+  color: #fff;
+  font-size: 14px;
+  position: absolute;
+  top: 4px;
+  left: 7px;
+}
+.checklistLabel {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.9rem;
+  color: #374151;
+}
+
+/* REPORT FORM */
+.inputGroup {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.inputLabel {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.9rem;
+  color: #6f6090;
+  margin-right: 8px;
+  white-space: nowrap;
+}
+.inputField {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.9rem;
+}
+.submitBtn {
+  background: #16a34a;
+  color: #fff;
+  border: none;
+  padding: 16px 32px; /* padding rộng hơn */
+  min-width: 160px; /* độ rộng tối thiểu */
+  border-radius: 24px;
+  cursor: pointer;
+  font-family: "DM Sans", sans-serif;
+  font-size: 1rem;
+  margin-top: 16px;
+}
+.keepInMind {
+  margin-top: 24px;
+}
+.keepInMind h4 {
+  font-family: "DM Sans", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.keepInMind p {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+/* stack the report/form + remind in one column with gap */
+.reportPanelWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* reuse same card style for both sections */
+.reportPanel {
+  background: #fff;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 5px 16px rgba(8, 15, 52, 0.06);
+}
+
+/* right column container */
+.reportColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+/* text inside the keep-in-mind panel */
+.remindText {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.9rem;
+  color: #374151;
+  margin: 0;
+  /* add this: */
+  line-height: 1.6;
+}
+
+/* small CTA button under lists */
+.smallBtn {
+  display: inline-block;
+  width: auto !important;
+  padding: 6px 12px;
+  font-size: 0.875rem;
+  margin-top: 16px;
+  border-radius: 8px;
+}
+
+/* TRIGGERS SECTION */
+.triggersSection {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+  margin-bottom: 48px;
+}
+.chartContainer {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+}
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.legendColorBox {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+.legendLabel {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.875rem;
+  color: #374151;
+}
+.infoPanel {
+  flex: 3;
+  background: #fff;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 5px 16px rgba(8, 15, 52, 0.06);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.infoTitle {
+  font-family: "DM Sans", sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+.infoContent {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.9rem;
+  color: #374151;
+  line-height: 1.6;
+  white-space: pre-line;
+}
+.arrowButtons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+}
+.arrowBtn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.sliceInactive {
+  opacity: 0.5;
+}
+.sliceActive {
+  opacity: 1;
+  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.15));
+}
+
+/* FOOTER BUTTONS */
+.footerButtons {
+  display: flex;
+  justify-content: space-between;
+}
+.prevBtn {
+  background: transparent;
+  color: #16a34a;
+  border: 2px solid #16a34a;
+  padding: 8px 20px;
+  border-radius: 24px;
+  cursor: pointer;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.9rem;
+}
+.nextBtn {
+  background: #16a34a;
+  color: #fff;
+  border: none;
+  padding: 12px 32px;
+  border-radius: 24px;
+  cursor: pointer;
+  font-family: "DM Sans", sans-serif;
+  font-size: 1rem;
+}
+/* container under your triggers */
+.planSupportSection {
+  margin-bottom: 48px;
+}
+.planSupportGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+/* each card */
+.planCard {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 5px 16px rgba(8, 15, 52, 0.06);
+  display: flex;
+  flex-direction: column;
+}
+
+/* card-level title above both image & text */
+.cardTitle {
+  font-family: "DM Sans", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1f2041;
+  margin-bottom: 16px;
+}
+
+/* flex row for image + content */
+.cardBody {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+/* left image */
+.cardImage {
+  width: 120px;
+  height: auto;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+/* right text wrapper */
+.cardContent {
+  display: flex;
+  flex-direction: column;
+}
+
+/* paragraph */
+.cardText {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.9rem;
+  color: #374151;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+/* bullet list */
+.cardList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+}
+.cardList li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 8px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.9rem;
+  color: #374151;
+}
+.cardList li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #16a34a;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.boldText {
+  font-weight: 700;
+}
+
+.smallBtn1 {
+  display: inline-block; /* don’t fill the container */
+  width: 115px; /* override any 100% you may have */
+  padding: 8px 12px; /* smaller click area */
+  font-size: 0.875rem; /* a touch smaller text */
+  margin-top: 16px; /* spacing below the list */
+}
+
+/* Remind-yourself section wrapper */
+.remindSection {
+  margin: 48px 0;
+}
+
+/* layout for the two (or more) cards */
+.remindGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 24px;
+  margin-top: 24px;
+}
+
+/* each card box */
+.remindCard {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 5px 16px rgba(8, 15, 52, 0.06);
+  padding: 16px;
+  text-align: center;
+}
+
+/* image styling */
+.remindImage {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 12px;
+}
+
+/* label under the image */
+.remindLabel {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.9rem;
+  color: #374151;
+  margin: 0;
+}
+
+/* wrapper */
+.communityWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+/* dropdown container */
+.dropdownMenu {
+  position: absolute;
+  top: calc(100% + 20px); /* đẩy xuống 4px so với đáy navItem */
+  right: -8px; /* đẩy sang phải thêm 8px khỏi mép navItem */
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 12px 0; /* tăng padding để menu giãn rộng ra */
+  min-width: 200px; /* đặt min-width lớn hơn để không quá chật */
+  z-index: 10;
+}
+
+/* từng mục trong dropdown */
+.dropdownItem {
+  display: block;
+  padding: 10px 20px; /* tăng padding để mỗi dòng rộng rãi hơn */
+  font-family: "DM Sans", sans-serif;
+  font-size: 14px;
+  color: #1f2041;
+  text-decoration: none;
+}
+
+.dropdownItem + .dropdownItem {
+  margin-top: 4px; /* khoảng cách giữa 2 dòng */
+}
+
+.dropdownItem:hover {
+  background-color: #f0fdf4;
+  color: #166534;
+}

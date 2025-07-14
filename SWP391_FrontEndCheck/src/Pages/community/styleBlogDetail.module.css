@@ -1,0 +1,236 @@
+/* === LAYOUT CHUNG === */
+.fullPage {
+  background: #e6fef1;
+  min-height: 100vh;
+}
+
+.pageWrapper {
+  padding: 32px 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  max-width: 1200px;
+  width: 100%;
+  background: #fff;
+  border-radius: 16px;
+  padding: 48px;
+  box-shadow: 0 5px 16px rgba(8, 15, 52, 0.06);
+}
+
+/* === HEADER === */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 32px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 24px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logoImg {
+  width: 48px;
+  height: 48px;
+}
+
+.logoText {
+  font-family: "DM Sans", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #16a34a;
+}
+
+.nav {
+  display: flex;
+  gap: 32px;
+}
+
+/* wrap the Community link so its dropdown is positioned relative to it */
+.communityWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.navItem {
+  font-family: "DM Sans", sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #374151;
+  text-decoration: none;
+}
+
+.activeNav {
+  color: #16a34a;
+  font-weight: 700;
+}
+
+/* repositioned dropdown so it sits right under “Community” */
+.dropdownMenu {
+  position: absolute;
+  top: calc(100% + 20px); /* right below the link */
+  left: -130px; /* left edge aligned */
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 20px 10px;
+  min-width: 200px;
+  z-index: 10;
+}
+
+.dropdownItem {
+  display: block;
+  padding: 8px 16px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.875rem;
+  color: #1f2041;
+  text-decoration: none;
+}
+
+.dropdownItem + .dropdownItem {
+  margin-top: 4px;
+}
+
+.dropdownItem:hover {
+  background: #f0fdf4;
+  color: #166534;
+}
+
+.startBtn {
+  background: #16a34a;
+  color: #fff;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 24px;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 500;
+}
+
+/* === DETAIL HEADER === */
+.detailLabel {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #16a34a;
+  background: #e6fef1;
+  padding: 4px 8px;
+  border-radius: 9999px;
+  display: inline-block;
+  margin-bottom: 16px;
+}
+
+.detailTitle {
+  font-family: "DM Sans", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1f2041;
+  line-height: 1.3;
+}
+
+/* === META INFO === */
+.metaInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.avatarSmall {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.metaText {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+/* === IMAGE === */
+.detailImage {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  object-fit: cover;
+  margin-bottom: 24px;
+}
+
+/* === DETAIL CONTENT TYPOGRAPHY === */
+.detailContent {
+  font-family: "DM Sans", sans-serif;
+  font-size: 1rem;
+  color: #374151;
+  line-height: 1.6;
+  margin-top: 24px;
+}
+
+.detailContent h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2041;
+  margin: 32px 0 16px;
+}
+
+.detailContent p {
+  margin-bottom: 16px;
+}
+
+.detailContent ul,
+.detailContent ol {
+  margin: 0 0 16px 24px;
+  padding: 0;
+}
+
+.detailContent ul {
+  list-style: none;
+}
+
+.detailContent ul li {
+  margin-bottom: 8px;
+}
+
+.detailContent ul li::marker {
+  content: "•";
+  color: #374151;
+  font-size: 1rem;
+}
+
+.detailContent ol {
+  list-style-type: decimal;
+}
+
+.detailContent ol li {
+  margin-bottom: 12px;
+}
+
+.detailContent ol li::marker {
+  font-weight: 700;
+  color: #374151;
+  font-size: 1rem;
+}
+
+.detailContent ol li strong {
+  font-weight: 700;
+  color: #1f2041;
+}
+
+.createBtn {
+  background: #16a34a;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 9999px;
+  cursor: pointer;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 600;
+}

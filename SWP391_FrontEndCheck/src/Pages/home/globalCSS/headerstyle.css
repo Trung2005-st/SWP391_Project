@@ -1,0 +1,37 @@
+/* Ensure QuitHub text is styled with priority */
+.header .text-wrapper {
+  font-size: 24px !important;
+  font-weight: 700 !important;
+  color: #166534 !important;
+  font-family: "Outfit", sans-serif !important;
+  white-space: nowrap !important;
+}
+
+/* Force apply nav link style */
+.navbar a {
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  color: #374151 !important;
+  text-decoration: none !important;
+  font-family: "DM Sans", sans-serif !important;
+}
+
+/* Active nav link override */
+.navbar a.nav-active {
+  color: #16a34a !important;
+  font-weight: 700 !important;
+}
+
+/* Community link override */
+.communityLink {
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  color: #374151 !important;
+  font-family: "DM Sans", sans-serif !important;
+}
+
+/* Active Community link */
+.communityLink.nav-active {
+  color: #16a34a !important;
+  font-weight: 700 !important;
+}
