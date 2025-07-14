@@ -40,6 +40,10 @@ public class User implements UserDetails {
     @Column(unique = true)
     private String username;
 
+    private String firstName;
+
+    private String lastName;
+
     @NotBlank(message= "password must not null")
     
     private String password;
@@ -54,6 +58,8 @@ public class User implements UserDetails {
 
     @Email(message = "Invalid Email!")
     private String email;
+
+    private String phone;
 
     @Column(name="is_verified", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
     private boolean isVerified;

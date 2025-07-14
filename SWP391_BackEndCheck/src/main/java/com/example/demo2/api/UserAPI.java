@@ -4,6 +4,7 @@ import com.example.demo2.entity.User;
 import com.example.demo2.exception.AccountNotFoundException;
 import com.example.demo2.repository.UserRepository;
 import com.example.demo2.services.AuthenticationService;
+import com.example.demo2.services.TokenService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,9 @@ public class UserAPI{
 
     @Autowired
     PasswordEncoder passwordEncoder;
+
+    @Autowired
+    TokenService tokenService;
 
     @Autowired
     UserRepository userRepository;
@@ -62,6 +66,9 @@ public class UserAPI{
         u.setEmail(user.getEmail());
         u.setGender(user.getGender());
         u.setRole(user.getRole());
+        u.setFirstName(user.getFirstName());
+        u.setLastName(user.getLastName());
+        u.setPhone(user.getPhone());
         u.setVerified(user.isVerified());
         u.setUserMemberships(user.getUserMemberships());
         return ResponseEntity.ok(userRepository.save(u));
@@ -77,5 +84,11 @@ public class UserAPI{
     public ResponseEntity deleteUserById(@PathVariable long userId){
         userRepository.deleteById(userId);
         return ResponseEntity.ok(userRepository.findAll());
+    }
+    @GetMapping("/me")
+    public ResponseEntity<User> getCurrentUser(@RequestHeader("Authorization") String authHeader) {
+        String token = authHeader.substring(7);
+        User u = tokenService.extractAccount(token);
+        return ResponseEntity.ok(u);
     }
 }
