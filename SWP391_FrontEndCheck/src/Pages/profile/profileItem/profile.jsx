@@ -1,7 +1,8 @@
 // src/Pages/profile/ProfilePage.jsx
+
 import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { Avatar, Button, notification } from "antd";
+import { Avatar, Button, notification, Radio } from "antd";
 import {
   UserOutlined,
   EditOutlined,
@@ -17,7 +18,6 @@ import logoImg from "../../../../image/quit.png";
 import userPic from "../../../../image/avt.png";
 import { ROUTES } from "../../../configs/routes";
 
-// global notification defaults
 notification.config({
   placement: "topRight",
   duration: 5,
@@ -32,14 +32,12 @@ export default function ProfilePage() {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [contact, setContact] = useState("");
+  const [gender, setGender] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // fetch current user on mount
+  // Load profile
   useEffect(() => {
-    if (!token) {
-      navigate(ROUTES.HOME);
-      return;
-    }
+    if (!token) return navigate(ROUTES.HOME);
     fetch("http://localhost:8080/api/users/me", {
       headers: { Authorization: `Bearer ${token}` },
     })
@@ -49,10 +47,11 @@ export default function ProfilePage() {
       })
       .then((data) => {
         setUser(data);
-        setFirstName(data.firstName || data.username);
+        setFirstName(data.firstName || "");
         setLastName(data.lastName || "");
         setEmail(data.email || "");
         setContact(data.phone || "");
+        setGender(data.gender || "");
       })
       .catch(() =>
         notification.error({
@@ -80,18 +79,16 @@ export default function ProfilePage() {
     }
     const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRe.test(email)) {
-      notification.error({
-        message: "Invalid email format",
-        style: { width: 360 },
-      });
+      notification.error({ message: "Invalid email", style: { width: 360 } });
       return false;
     }
     const phoneRe = /^(?:\+84|0)(?:3|5|7|8|9)\d{8}$/;
     if (!phoneRe.test(contact)) {
-      notification.error({
-        message: "Phone must be 10 digits starting with 09",
-        style: { width: 360 },
-      });
+      notification.error({ message: "Invalid phone", style: { width: 360 } });
+      return false;
+    }
+    if (!["MALE", "FEMALE"].includes(gender)) {
+      notification.error({ message: "Select a gender", style: { width: 360 } });
       return false;
     }
     return true;
@@ -112,6 +109,7 @@ export default function ProfilePage() {
         lastName,
         email,
         phone: contact,
+        gender,
       }),
     })
       .then((res) => {
@@ -123,12 +121,8 @@ export default function ProfilePage() {
         setUser(updated);
         notification.success({
           message: "Profile Updated!",
-          description: "Your profile information has been saved.",
-          style: {
-            width: 360,
-            fontSize: 16,
-            padding: "16px 24px",
-          },
+          description: "Your changes have been saved.",
+          style: { width: 360, fontSize: 16, padding: "16px 24px" },
         });
       })
       .catch(() => {
@@ -145,7 +139,12 @@ export default function ProfilePage() {
     localStorage.removeItem("token");
     navigate(ROUTES.HOME);
   };
-
+  // /* 4. Dropdown menu community */
+  const [showCommunityMenu, setShowCommunityMenu] = useState(false);
+  const toggleCommunityMenu = (e) => {
+    e.preventDefault();
+    setShowCommunityMenu((prev) => !prev);
+  };
   return (
     <div className={styles.fullPage}>
       {/* HEADER */}
@@ -164,20 +163,53 @@ export default function ProfilePage() {
           <NavLink to={ROUTES.PROGRESS_STEP1} className={styles.navItem}>
             Progress
           </NavLink>
-          <NavLink to="/community" className={styles.navItem}>
-            Community
-          </NavLink>
+          <div className={styles.communityWrapper}>
+            <a
+              href="/community"
+              className={styles.navItem}
+              onClick={toggleCommunityMenu}
+            >
+              Community
+            </a>
+            {showCommunityMenu && (
+              <div className={styles.dropdownMenu}>
+                <NavLink
+                  to={ROUTES.COACH_LIST}
+                  className={styles.dropdownItem}
+                  onClick={() => setShowCommunityMenu(false)}
+                >
+                  Doctor Service
+                </NavLink>
+                <NavLink
+                  to={ROUTES.BLOG_SERVICE}
+                  className={styles.dropdownItem}
+                  onClick={() => setShowCommunityMenu(false)}
+                >
+                  Blog Service
+                </NavLink>
+                <NavLink
+                  to={ROUTES.SEND_ENCOURAGEMENT}
+                  className={styles.dropdownItem}
+                  onClick={() => setShowCommunityMenu(false)}
+                >
+                  Send Encouragement
+                </NavLink>
+              </div>
+            )}
+          </div>
         </nav>
         {token ? (
           <div className={styles.groupBtn}>
-            <Avatar
-              icon={<UserOutlined />}
-              style={{
-                backgroundColor: "#52c41a",
-                color: "#fff",
-                marginRight: 16,
-              }}
-            />
+            <NavLink to={ROUTES.PROFILE_PAGE}>
+              <Avatar
+                icon={<UserOutlined />}
+                style={{
+                  backgroundColor: "#52c41a",
+                  color: "#fff",
+                  marginRight: 16,
+                }}
+              />
+            </NavLink>
             <Button
               type="primary"
               danger
@@ -216,20 +248,24 @@ export default function ProfilePage() {
                     <span>Blog manager</span>
                   </li>
                 </NavLink>
-                <li className={styles.sidebarItem}>
-                  <BellOutlined className={styles.icon} />
-                  <span>Notification</span>
-                </li>
+                <NavLink to={ROUTES.NOTIFICATION}>
+                  <li className={styles.sidebarItem}>
+                    <BellOutlined className={styles.icon} />
+                    <span>Notification</span>
+                  </li>
+                </NavLink>
                 <NavLink to={ROUTES.ARCHIVE_PAGE}>
                   <li className={styles.sidebarItem}>
                     <InboxOutlined className={styles.icon} />
                     <span>Archive</span>
                   </li>
                 </NavLink>
-                <li className={styles.sidebarItem}>
-                  <MessageOutlined className={styles.icon} />
-                  <span>Feedback</span>
-                </li>
+                <NavLink to={ROUTES.FEEDBACK}>
+                  <li className={styles.sidebarItem}>
+                    <MessageOutlined className={styles.icon} />
+                    <span>Feedback</span>
+                  </li>
+                </NavLink>
               </ul>
             </nav>
           </div>
@@ -245,6 +281,7 @@ export default function ProfilePage() {
               />
             </div>
             <section className={styles.profileContent}>
+              {/* First Name */}
               <div className={styles.formGroup}>
                 <label className={styles.formLabel}>First Name</label>
                 <input
@@ -254,6 +291,7 @@ export default function ProfilePage() {
                   onChange={(e) => setFirstName(e.target.value)}
                 />
               </div>
+              {/* Last Name */}
               <div className={styles.formGroup}>
                 <label className={styles.formLabel}>Last Name</label>
                 <input
@@ -263,6 +301,7 @@ export default function ProfilePage() {
                   onChange={(e) => setLastName(e.target.value)}
                 />
               </div>
+              {/* Email */}
               <div className={styles.formGroup}>
                 <label className={styles.formLabel}>Email</label>
                 <div className={styles.inputWithIcon}>
@@ -275,6 +314,7 @@ export default function ProfilePage() {
                   <CheckCircleOutlined className={styles.verifyIcon} />
                 </div>
               </div>
+              {/* Contact */}
               <div className={styles.formGroup}>
                 <label className={styles.formLabel}>Contact Number</label>
                 <input
@@ -284,6 +324,18 @@ export default function ProfilePage() {
                   onChange={(e) => setContact(e.target.value)}
                 />
               </div>
+              {/* Gender */}
+              <div className={styles.formGroup}>
+                <label className={styles.formLabel}>Gender</label>
+                <Radio.Group
+                  onChange={(e) => setGender(e.target.value)}
+                  value={gender}
+                >
+                  <Radio value="MALE">Male</Radio>
+                  <Radio value="FEMALE">Female</Radio>
+                </Radio.Group>
+              </div>
+              {/* Buttons */}
               <div className={styles.buttons}>
                 <button className={styles.prevBtn} onClick={() => navigate(-1)}>
                   Cancel

@@ -3,6 +3,7 @@ package com.example.demo2.entity;
 import com.example.demo2.enums.Gender;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -64,6 +65,11 @@ public class User implements UserDetails {
     @Column(name="is_verified", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
     private boolean isVerified;
 
+    private boolean status = true;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private CoachProfile coachProfile;
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return new ArrayList<>();

@@ -285,28 +285,17 @@ export default function BlogService() {
   const [dynamicPosts, setDynamicPosts] = useState([]);
   const [currentEmail, setCurrentEmail] = useState(null);
 
-  // token state for conditional header
-  const [token, setToken] = useState(localStorage.getItem("token"));
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    setToken(null);
-    navigate(ROUTES.HOME);
-  };
-
   const avatars = [avatarTracey, avatarJason, avatarElizabeth, avatarErnie];
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      const decoded = parseJwt(token);
-      if (decoded?.sub) {
-        setCurrentEmail(decoded.sub);
-      }
+    const tok = localStorage.getItem("token");
+    if (tok) {
+      const decoded = parseJwt(tok);
+      if (decoded?.sub) setCurrentEmail(decoded.sub);
     }
     const fetchBlogs = async () => {
       try {
         const res = await api.get("/blogs/dto");
-        console.log("API blog dto response: ", res.data);
         const data = res.data.map((b) => ({
           id: b.blogID,
           title: b.title,
@@ -330,11 +319,13 @@ export default function BlogService() {
     };
     fetchBlogs();
   }, []);
-
+  // avoid duplicates: drop static posts whose id appears in dynamic
   const mergedPosts = useMemo(() => {
-    return [...dynamicPosts, ...staticPosts].sort(
-      (a, b) => new Date(b.date) - new Date(a.date)
-    );
+    const dynIds = new Set(dynamicPosts.map((p) => p.id));
+    return [
+      ...dynamicPosts,
+      ...staticPosts.filter((p) => !dynIds.has(p.id)),
+    ].sort((a, b) => new Date(b.date) - new Date(a.date));
   }, [dynamicPosts]);
 
   const filtered = useMemo(() => {
@@ -415,28 +406,28 @@ export default function BlogService() {
             )}
           </div>
         </nav>
-        {/* conditional header buttons */}
-        {token ? (
-          <>
-            <div className={styles.groupBtn}>
-              <Avatar
-                icon={<UserOutlined />}
-                style={{
-                  backgroundColor: "#52c41a",
-                  color: "#fff",
-                  marginRight: 16,
-                }}
-              />
-              <Button
-                type="primary"
-                danger
-                icon={<LogoutOutlined />}
-                onClick={handleLogout}
-              >
-                Logout
-              </Button>
-            </div>
-          </>
+        {localStorage.getItem("token") ? (
+          <div className={styles.groupBtn}>
+            <Avatar
+              icon={<UserOutlined />}
+              style={{
+                backgroundColor: "#52c41a",
+                color: "#fff",
+                marginRight: 16,
+              }}
+            />
+            <Button
+              type="primary"
+              danger
+              icon={<LogoutOutlined />}
+              onClick={() => {
+                localStorage.removeItem("token");
+                navigate(ROUTES.HOME);
+              }}
+            >
+              Logout
+            </Button>
+          </div>
         ) : (
           <button
             className={styles.startBtn}

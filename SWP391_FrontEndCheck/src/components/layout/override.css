@@ -1,0 +1,142 @@
+/* === SIDEBAR === */
+.ant-layout-sider.custom-sider {
+  background: #e6fef1 !important;
+  display: flex !important;
+  flex-direction: column;
+}
+
+/* Logo */
+.sider-logo {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  gap: 16px;
+  background-color: #10b981;
+}
+.sider-logo-img {
+  width: 48px;
+  height: 48px;
+}
+.sider-logo-text .sider-logo-main {
+  font-weight: 700;
+  font-size: 18px;
+  color: white;
+}
+.sider-logo-text .sider-logo-sub {
+  font-size: 12px;
+  color: white;
+}
+
+/* Menu wrapper chiếm flex */
+.sider-menu-wrapper {
+  flex: 1;
+  height: 75vh;
+  overflow: auto;
+  margin-top: 12px;
+}
+/* Bỏ marginTop trên .ant-menu */
+.ant-layout-sider .ant-menu {
+  background: transparent !important;
+  border-right: none;
+}
+.ant-layout-sider .ant-menu-item:hover {
+  background: rgba(16, 185, 129, 0.15) !important;
+}
+.ant-layout-sider .ant-menu-item-selected {
+  background: #10b981 !important;
+}
+.ant-layout-sider .ant-menu-item-selected .ant-menu-item-icon,
+.ant-layout-sider .ant-menu-item-selected .ant-menu-title-content {
+  color: #fff !important;
+}
+
+/* Footer panel */
+.bottomPanel {
+  margin-bottom: 0px;
+  width: calc(100% - 32px);
+  padding: 16px 0;
+  text-align: center;
+  background: #10b981;
+  border-radius: 8px;
+  margin: 0 16px 16px;
+  color: #fff;
+  font-size: 14px;
+  line-height: 1.4;
+}
+.bottomPanelSmall {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* === HEADER === */
+.appHeader {
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px !important;
+  height: 56px !important;
+  background: #fff !important;
+}
+.appHeader-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.collapseBtn {
+  font-size: 20px;
+  line-height: 1;
+}
+.pageTitleWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.pageTitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1f2041;
+  line-height: 1;
+}
+.pageSubtitle {
+  font-size: 12px;
+  color: #6b7280;
+  line-height: 1;
+}
+
+/* Right side */
+.appHeader-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.headerSearch {
+  width: 200px;
+  border-radius: 8px;
+}
+.headerBell {
+  font-size: 20px;
+  color: #374151;
+}
+
+/* === NAVBAR AVATAR === */
+.customAvatar {
+  background-color: #10b981 !important;
+  color: #fff !important;
+}
+.navbarUser {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+.navbarUser-info {
+  line-height: 1;
+}
+.navbarUser-name {
+  font-weight: 600;
+}
+.navbarUser-email {
+  font-size: 12px;
+  color: #6b7280;
+}

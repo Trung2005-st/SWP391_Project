@@ -1,0 +1,215 @@
+.adminNotifyRoot {
+  padding: 32px 18px 32px 18px;
+  background: #f7f8fa;
+  min-height: 100vh;
+}
+.statRow {
+  display: flex;
+  gap: 22px;
+  margin-bottom: 32px;
+  align-items: stretch;
+  width: 100%;
+}
+.statCard {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(60, 180, 170, 0.08);
+  padding: 13px 22px 13px 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 108px;
+  min-height: 56px;
+  flex: 1 1 0;
+}
+.statValWrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+.statValue {
+  font-size: 1.45rem;
+  font-weight: 800;
+  margin-right: 1px;
+  line-height: 1.08;
+}
+.statIcon {
+  font-size: 1.28rem;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+.statTitle {
+  font-size: 0.97rem;
+  font-weight: 700;
+  color: #1a222f;
+  margin-top: 4px;
+  letter-spacing: 0.1px;
+}
+
+.rowCards {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+  width: 100%;
+}
+.sendCard {
+  width: 55%;
+  min-width: 300px;
+  max-width: 600px;
+  background: #fff;
+  border-radius: 13px;
+  min-height: 400px;
+}
+.listCard {
+  width: 45%;
+  min-width: 220px;
+  max-width: 520px;
+  background: #fff;
+  border-radius: 13px;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+.cardTitle {
+  font-weight: 800;
+  font-size: 1.01rem;
+  margin-bottom: 13px;
+  color: #1c2636;
+  margin-top: 7px;
+}
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+.formItem {
+  margin-bottom: 2px;
+}
+.formLabel {
+  font-size: 0.96rem;
+  font-weight: 600;
+  color: #18333a;
+  margin-bottom: 2px;
+  display: block;
+}
+.input {
+  border-radius: 7px !important;
+  font-size: 0.99rem;
+  background: #fff;
+  border: 1.2px solid #e4e4e4 !important;
+  width: 100%;
+  min-width: 80px;
+  margin-bottom: 0;
+}
+.sendBtn {
+  background: #1890ff !important;
+  font-weight: 700 !important;
+  border: none !important;
+  color: #fff !important;
+  transition: background 0.2s;
+  font-size: 1rem;
+  border-radius: 7px;
+}
+.sendBtn:hover,
+.sendBtn:active {
+  background: #0958d9 !important;
+  color: #fff !important;
+}
+
+.roleRadioRow {
+  display: flex;
+  gap: 10px;
+  margin-top: 3px;
+}
+.roleRadioCard {
+  border: 1.3px solid #e5e8ed;
+  background: #f7f8fa;
+  color: #404040;
+  border-radius: 7px;
+  font-size: 0.98rem;
+  font-weight: 600;
+  padding: 7px 17px 7px 17px;
+  cursor: pointer;
+  user-select: none;
+  transition:
+    background 0.15s,
+    border 0.15s;
+}
+.roleRadioActive {
+  border: 1.5px solid #1890ff;
+  background: #e9eef6;
+  color: #0958d9;
+}
+.roleRadioLabel {
+  font-size: 0.98rem;
+}
+
+.filterBar {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+.searchInput {
+  border-radius: 8px !important;
+  font-size: 0.97rem;
+  padding: 5px 11px !important;
+  background: #fff;
+  border: 1.2px solid #e4e4e4 !important;
+  min-width: 100px;
+  width: 160px;
+}
+.notifyList {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  margin-top: 6px;
+}
+.notifyItem {
+  background: #f7fafc;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(150, 180, 210, 0.07);
+  border: 1px solid #e9eaea;
+  padding: 11px 13px 8px 12px;
+  min-width: 150px;
+  min-height: 55px;
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+}
+.notifyHeader {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+  gap: 9px;
+}
+.notifyFrom {
+  font-weight: 700;
+  font-size: 0.99rem;
+  color: #23272f;
+  margin-bottom: 0.7px;
+}
+.notifyDate {
+  color: #8a98bb;
+  font-size: 0.87rem;
+  font-weight: 400;
+}
+.roleTag {
+  margin-left: auto;
+  font-size: 0.83rem;
+  font-weight: 600;
+  padding: 2px 11px 2px 9px;
+  border-radius: 4px;
+  color: #404040;
+}
+.notifyMsg {
+  font-size: 0.99rem;
+  color: #333;
+  margin-left: 1.5px;
+  margin-top: 1.5px;
+  word-break: break-word;
+}

@@ -1,5 +1,6 @@
 package com.example.demo2.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -8,19 +9,17 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CoachProfile {
-
     @Id
     private Long coachID;
 
     @OneToOne
     @MapsId
     @JoinColumn(name = "coachID")
+    @JsonBackReference
     private User user;
 
-    private String biography;
     private String expertise;
     private int yearsOfExperience;
-
-    // Getters and Setters
+    private String institution;
+    private String biography;
 }
-

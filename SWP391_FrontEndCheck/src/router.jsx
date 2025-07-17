@@ -8,8 +8,6 @@ import {
 
 import Home from "./Pages/home/home";
 import AdminUser from "./Pages/admin/adminUser/AdminUser";
-import AdminQuitPlan from "./Pages/admin/adminQuitPlan/AdminQuitPlan";
-import AdminMembership from "./Pages/admin/adminMembership/AdminMembership";
 import LoginPage from "./Pages/authentication/login";
 import RegisterPage from "./Pages/authentication/register";
 import { ROUTES } from "./configs/routes";
@@ -18,7 +16,6 @@ import ForgotPasswordPage from "./Pages/authentication/forgot-password";
 import ResetPasswordPage from "./Pages/authentication/reset-password";
 import VerifyUserPage from "./Pages/authentication/verify-user";
 import VerifyPasswordPage from "./Pages/authentication/verify-password";
-import AdminCoachRegister from "./Pages/admin/adminCoachRegister/AdminCoachRegister";
 import DashboardPage from "./Pages/admin/dashboard/dashboardPage";
 import ProgressComponent1 from "./Pages/progressStep/step1/progressStep1";
 import ProgressComponent2 from "./Pages/progressStep/step2/progressStep2";
@@ -41,6 +38,14 @@ import SendEncouragement from "./Pages/community/encouragement/encouragement";
 import SendEncouragementForm from "./Pages/community/encouragementDetail/encouragementDetail";
 import BlogManagerPage from "./Pages/profile/blogManager/blogManager";
 import ArchivePage from "./Pages/profile/encouragementRecieve/encouragementRecieve";
+import FeedbackPage from "./Pages/profile/feedback/feedback";
+import FeedbackForm from "./Pages/profile/feedbackForm/feedbackForm";
+import AppointmentPage from "./Pages/coachFunction/appointmentForm/appointmentForm";
+import AdminBlog from "./Pages/admin/adminBlog/AdminBlog";
+import AdminFeedbackPage from "./Pages/admin/adminFeedback/AdminFeedback";
+import AdminNotificationPage from "./Pages/admin/adminNotification/AdminNotification";
+import NotificationPage from "./Pages/profile/notification/notification";
+import AppointmentList from "./Pages/profile/appointment/appointment";
 
 function Router() {
   const router = createBrowserRouter([
@@ -60,13 +65,13 @@ function Router() {
       loader: requireAuthLoader,
     },
     {
-      path: ROUTES.ADMIN_QUIT,
-      element: <AdminQuitPlan />,
+      path: ROUTES.ADMIN_BLOG,
+      element: <AdminBlog />,
       loader: requireAuthLoader,
     },
     {
-      path: ROUTES.ADMIN_MEMBERSHIP,
-      element: <AdminMembership />,
+      path: ROUTES.ADMIN_NOTIFICATION,
+      element: <AdminNotificationPage />,
       loader: requireAuthLoader,
     },
     {
@@ -75,8 +80,8 @@ function Router() {
       loader: requireAuthLoader,
     },
     {
-      path: ROUTES.ADMIN_REGISTER,
-      element: <AdminCoachRegister></AdminCoachRegister>,
+      path: ROUTES.ADMIN_FEEDBACK,
+      element: <AdminFeedbackPage></AdminFeedbackPage>,
       loader: requireAuthLoader,
     },
     {
@@ -172,6 +177,31 @@ function Router() {
     {
       path: ROUTES.ARCHIVE_PAGE,
       element: <ArchivePage></ArchivePage>,
+      loader: requireAuthLoader,
+    },
+    {
+      path: ROUTES.FEEDBACK,
+      element: <FeedbackPage></FeedbackPage>,
+      loader: requireAuthLoader,
+    },
+    {
+      path: ROUTES.FEEDBACK_FORM,
+      element: <FeedbackForm></FeedbackForm>,
+      loader: requireAuthLoader,
+    },
+    {
+      path: ROUTES.APPOINTMENT_FORM,
+      element: <AppointmentPage></AppointmentPage>,
+      loader: requireAuthLoader,
+    },
+    {
+      path: ROUTES.NOTIFICATION,
+      element: <NotificationPage></NotificationPage>,
+      loader: requireAuthLoader,
+    },
+    {
+      path: ROUTES.APPOINTMENT_LIST,
+      element: <AppointmentList></AppointmentList>,
       loader: requireAuthLoader,
     },
     // fallback

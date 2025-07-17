@@ -40,7 +40,8 @@ public class Filter extends OncePerRequestFilter {
             "POST:/api/login",
             "POST:/api/forgot-password",   // optional: for password reset flow
             "POST:/api/verify-otp",        // optional: for OTP flow
-            "POST:/api/reset-password"     // optional: for reset flow
+            "POST:/api/reset-password",
+            "POST:/api/coach/create"// optional: for reset flow
     );
 
 

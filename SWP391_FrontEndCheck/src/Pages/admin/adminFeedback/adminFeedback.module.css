@@ -1,0 +1,225 @@
+.adminFeedbackRoot {
+  padding: 30px 24px 36px 24px;
+  background: #f6f8fa;
+  min-height: 100vh;
+}
+
+.statRow {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+  align-items: stretch;
+}
+.statCard {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 1px 6px rgba(80, 180, 160, 0.08);
+  padding: 10px 16px 7px 16px;
+  min-width: 112px;
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  font-size: 13px;
+  min-height: 52px;
+}
+.statTitle {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a222f;
+  margin-bottom: 1px;
+}
+.statValWrap {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.statValue {
+  font-size: 1.38rem;
+  font-weight: 800;
+  margin-right: 2px;
+}
+.statEmoji {
+  font-size: 1.31rem;
+  vertical-align: middle;
+  margin-left: 3px;
+}
+
+.dashboardRow {
+  display: flex;
+  gap: 22px;
+  width: 100%;
+  align-items: flex-start;
+}
+
+.leftPanel {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(80, 180, 160, 0.08);
+  width: 360px;
+  min-width: 230px;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  padding: 0;
+  min-height: 390px;
+}
+.pieWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 22px 8px 22px 8px;
+}
+
+.customLegend {
+  width: 100%;
+  margin-top: 26px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 2.5px;
+}
+.legendColor {
+  width: 15px;
+  height: 15px;
+  display: inline-block;
+  border-radius: 3px;
+  margin-right: 4px;
+}
+.legendLabel {
+  font-size: 15px;
+  color: #222;
+}
+
+.rightPanel {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 1px 7px rgba(80, 180, 160, 0.08);
+  padding: 17px 16px 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: fit-content;
+  min-width: 370px;
+  max-width: 880px;
+}
+
+.filterBar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+.emojiFilter {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+.emojiFilter button {
+  background: #f2f3f6;
+  border-radius: 6px;
+  font-size: 18px;
+  border: 0.5px solid #e3e8f1;
+  min-width: 36px;
+  font-weight: 700;
+  transition:
+    background 0.13s,
+    color 0.13s;
+}
+.activeEmoji {
+  background: #1890ff !important;
+  color: #fff !important;
+  border: none !important;
+}
+
+.feedbackListWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.feedbackList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 13px;
+  width: fit-content;
+  min-width: 260px;
+  max-width: 680px;
+}
+
+.userCard {
+  background: #fafbfd;
+  border-radius: 9px;
+  box-shadow: 0 1px 7px rgba(180, 200, 220, 0.07);
+  border: 1px solid #f1f3f7;
+  padding: 13px 14px 9px 16px;
+  min-width: 240px;
+  max-width: 320px;
+  flex: 1 1 260px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2px;
+  min-height: 92px;
+  align-items: stretch;
+}
+.userCardHeader {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  gap: 12px;
+}
+.userMainInfo {
+  flex: 1;
+  min-width: 0;
+}
+.userName {
+  font-weight: 700;
+  font-size: 1.08rem;
+  color: #23272f;
+  margin-bottom: 1.8px;
+  word-break: break-word;
+}
+.userEmail {
+  color: #8a98bb;
+  font-size: 0.95rem;
+  font-weight: 400;
+}
+.emojiLarge {
+  font-size: 2rem;
+  margin-left: 4px;
+}
+.feedbackText {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 10px;
+  margin-left: 2px;
+  word-break: break-word;
+}
+.responseBtn {
+  background: #16a34a !important;
+  color: #fff !important;
+  font-weight: 700;
+  border-radius: 6px !important;
+  margin-top: auto;
+  width: 100%;
+  font-size: 0.96rem;
+}
+.searchInput {
+  border-radius: 8px !important;
+  font-size: 1rem;
+  padding: 6px 12px !important;
+  background: #fff;
+  border: 1.2px solid #e4e4e4 !important;
+  min-width: 180px;
+  width: 210px;
+}

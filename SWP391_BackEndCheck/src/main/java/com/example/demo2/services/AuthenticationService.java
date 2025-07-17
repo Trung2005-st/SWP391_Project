@@ -151,6 +151,9 @@ public class AuthenticationService implements UserDetailsService {
             throw new AuthenticationException("Authentication Failed!!!");
         }
         User account= authenticationRepository.findUserByUsername(accountLogin.getUsername());
+        if (!account.isStatus()){
+            throw new AuthenticationException("Account is locked! Contact admin to unlock");
+        }
         AccountResponse accountResponse = modelMapper.map(account, AccountResponse.class);
         String token = tokenService.generateToken(account);
         accountResponse.setToken(token);

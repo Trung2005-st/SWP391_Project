@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class EncouragementService {
@@ -35,5 +36,9 @@ public class EncouragementService {
         encouragement.setSentAt(new Date());
 
         return encouragementRepository.save(encouragement);
+    }
+
+    public List<Encouragement> getReceived(User receiver) {
+        return encouragementRepository.findByReceiver(receiver);
     }
 }

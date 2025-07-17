@@ -199,14 +199,16 @@ export default function BlogManagerPage() {
         </nav>
         {token ? (
           <div className={styles.groupBtn}>
-            <Avatar
-              icon={<UserOutlined />}
-              style={{
-                backgroundColor: "#52c41a",
-                color: "#fff",
-                marginRight: 16,
-              }}
-            />
+            <NavLink to={ROUTES.PROFILE_PAGE}>
+              <Avatar
+                icon={<UserOutlined />}
+                style={{
+                  backgroundColor: "#52c41a",
+                  color: "#fff",
+                  marginRight: 16,
+                }}
+              />
+            </NavLink>
             <Button
               type="primary"
               danger
@@ -248,20 +250,24 @@ export default function BlogManagerPage() {
                     <span>Blog manager</span>
                   </li>
                 </NavLink>
-                <li className={styles.sidebarItem}>
-                  <BellOutlined className={styles.icon} />
-                  <span>Notification</span>
-                </li>
+                <NavLink to={ROUTES.NOTIFICATION}>
+                  <li className={styles.sidebarItem}>
+                    <BellOutlined className={styles.icon} />
+                    <span>Notification</span>
+                  </li>
+                </NavLink>
                 <NavLink to={ROUTES.ARCHIVE_PAGE}>
                   <li className={styles.sidebarItem}>
                     <InboxOutlined className={styles.icon} />
                     <span>Archive</span>
                   </li>
                 </NavLink>
-                <li className={styles.sidebarItem}>
-                  <MessageOutlined className={styles.icon} />
-                  <span>Feedback</span>
-                </li>
+                <NavLink to={ROUTES.FEEDBACK}>
+                  <li className={styles.sidebarItem}>
+                    <MessageOutlined className={styles.icon} />
+                    <span>Feedback</span>
+                  </li>
+                </NavLink>
               </ul>
             </nav>
           </div>

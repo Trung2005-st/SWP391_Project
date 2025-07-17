@@ -1,12 +1,12 @@
-import React, { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
+import { StrictMode } from "react";
 import { BrowserRouter } from "react-router-dom";
-import AdminMembership from "./AdminMembership";
+import ProfilePage from "../profile";
+import FeedbackPage from "./feedback";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
-      <AdminMembership />
+      <FeedbackPage />
     </BrowserRouter>
   </StrictMode>
 );

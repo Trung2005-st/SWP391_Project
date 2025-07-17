@@ -65,6 +65,7 @@ public class UserAPI{
         u.setUsername(user.getUsername());
         u.setEmail(user.getEmail());
         u.setGender(user.getGender());
+        u.setStatus(user.isStatus());
         u.setRole(user.getRole());
         u.setFirstName(user.getFirstName());
         u.setLastName(user.getLastName());

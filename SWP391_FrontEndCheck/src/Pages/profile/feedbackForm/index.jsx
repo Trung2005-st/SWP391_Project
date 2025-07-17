@@ -1,12 +1,12 @@
-import React, { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
+import { StrictMode } from "react";
 import { BrowserRouter } from "react-router-dom";
-import AdminQuitPlan from "./AdminQuitPlan.jsx";
+import ProfilePage from "../profile";
+import FeedbackPage from "./feedback";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
-      <AdminQuitPlan />
+      <FeedbackForm />
     </BrowserRouter>
   </StrictMode>
 );
