@@ -7,6 +7,8 @@ import java.util.Date;
 
 @Data
 public class AccountResponse {
+    private Long id;
+
     public String username;
 
     public int role;

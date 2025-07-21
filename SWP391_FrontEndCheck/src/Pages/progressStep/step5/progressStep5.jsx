@@ -1,15 +1,18 @@
 // src/Pages/progressStep/step5/ProgressStep5.jsx
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import styles from "../../progressStep/styleProgress.module.css";
+import styles from "../styleProgress.module.css";
 import logoImg from "../../../../image/quit.png";
 import { ROUTES } from "../../../configs/routes";
 import { ProgressContext } from "../../../configs/ProgressContext";
 import { Avatar, Button } from "antd";
 import { UserOutlined, LogoutOutlined } from "@ant-design/icons";
-
+import api from "../../../configs/axios";
 export default function ProgressComponent5() {
   const navigate = useNavigate();
+
+  const { selectedStrategies, setSelectedStrategies } =
+    useContext(ProgressContext);
 
   const [showCommunityMenu, setShowCommunityMenu] = useState(false);
   // token state for conditional header
@@ -23,16 +26,8 @@ export default function ProgressComponent5() {
     e.preventDefault(); // ngăn NavLink navigate ngay lập tức
     setShowCommunityMenu((prev) => !prev);
   };
-  const {
-    quitDate,
-    finishTimeline,
-    cigarettesPerDay,
-    packCost,
-    selectedReasons,
-    selectedTriggers,
-    selectedStrategies,
-    setSelectedStrategies,
-  } = useContext(ProgressContext);
+
+  // Lấy các lý do người dùng đã chọn khi component mount
 
   const groups = [
     {
@@ -133,29 +128,28 @@ export default function ProgressComponent5() {
     );
   };
 
-  const handleFinish = () => {
-    const formData = {
-      quitDate,
-      finishTimeline,
-      cigarettesPerDay,
-      packCost,
-      selectedReasons,
-      selectedTriggers,
-      selectedStrategies,
-    };
-
-    // Basic validation example
-    if (!quitDate) {
-      alert("Please choose a quit date.");
-      return;
+  function computeQuitDate(opt, picked) {
+    const today = new Date();
+    if (opt === "today") {
+      return today.toISOString().slice(0, 10);
     }
-    // Additional checks (e.g., cigarettesPerDay > 0) can go here
+    if (opt === "tomorrow") {
+      const t = new Date(today);
+      t.setDate(t.getDate() + 1);
+      return t.toISOString().slice(0, 10);
+    }
+    if (opt === "notReady") {
+      const w = new Date(today);
+      w.setDate(w.getDate() + 7);
+      return w.toISOString().slice(0, 10);
+    }
+    // pickDate → we've bound pickedDate to be an ISO yyyy‑MM‑dd string
+    return picked;
+  }
+  // after fetching:
 
-    // Here you might POST to an API or save to localStorage...
-    console.log("Submitting plan:", formData);
-
-    // Then navigate to the summary page, passing formData in location.state
-    navigate(ROUTES.AFTER_PROGRESS_STEP, { state: { formData } });
+  const handleFinish = () => {
+    navigate(ROUTES.AFTER_PROGRESS_PLAN);
   };
 
   return (
@@ -220,7 +214,7 @@ export default function ProgressComponent5() {
         {/* conditional header buttons */}
         {token ? (
           <>
-            <div class={styles.groupBtn}>
+            <div className={styles.groupBtn}>
               <Avatar
                 icon={<UserOutlined />}
                 style={{
@@ -340,8 +334,12 @@ export default function ProgressComponent5() {
               <NavLink to={ROUTES.PROGRESS_STEP4}>
                 <button className={styles.prevBtn}>Previous step</button>
               </NavLink>
-              <button className={styles.nextBtn} onClick={handleFinish}>
-                Finish
+
+              <button
+                className={styles.nextBtn}
+                onClick={() => navigate(ROUTES.AFTER_PROGRESS_STEP)}
+              >
+                See my plan
               </button>
             </div>
           </main>

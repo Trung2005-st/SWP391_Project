@@ -7,13 +7,16 @@ import { PersistGate } from "redux-persist/integration/react";
 import "./index.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { ProgressProvider } from "./configs/ProgressContext";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <Router></Router>
-        <ToastContainer />
+        <ProgressProvider>
+          <Router></Router>
+          <ToastContainer />
+        </ProgressProvider>
       </PersistGate>
     </Provider>
   </StrictMode>

@@ -2,16 +2,18 @@
 import React, { useContext, useState } from "react";
 import styles from "../../progressStep/styleProgress.module.css";
 import logoImg from "../../../../image/quit.png";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { ROUTES } from "../../../configs/routes";
 import { ProgressContext } from "../../../configs/ProgressContext";
 import { Avatar, Button } from "antd";
 import { UserOutlined, LogoutOutlined } from "@ant-design/icons";
+import api from "../../../configs/axios";
 
 export default function ProgressComponent4() {
-  const { selectedTriggers, setSelectedTriggers } = useContext(ProgressContext);
+  const { selectedTriggers , setSelectedTriggers  } = useContext(ProgressContext);
   const [showCommunityMenu, setShowCommunityMenu] = useState(false);
-
+  
+  const navigate = useNavigate();
   // token state for conditional header
   const [token, setToken] = useState(localStorage.getItem("token"));
   const handleLogout = () => {
@@ -23,7 +25,9 @@ export default function ProgressComponent4() {
     e.preventDefault(); // ngăn NavLink navigate ngay lập tức
     setShowCommunityMenu((prev) => !prev);
   };
-
+  const handleNext = () => {
+    navigate(ROUTES.PROGRESS_STEP5);
+  };
   const triggers = [
     {
       group: "Social Situations",
@@ -81,8 +85,8 @@ export default function ProgressComponent4() {
   ];
 
   const toggle = (val) => {
-    setSelectedTriggers((prev) =>
-      prev.includes(val) ? prev.filter((x) => x !== val) : [...prev, val]
+    setSelectedTriggers(prev =>
+      prev.includes(val) ? prev.filter(x => x !== val) : [...prev, val]
     );
   };
 
@@ -148,7 +152,7 @@ export default function ProgressComponent4() {
         {/* conditional header buttons */}
         {token ? (
           <>
-            <div class={styles.groupBtn}>
+            <div className={styles.groupBtn}>
               <Avatar
                 icon={<UserOutlined />}
                 style={{
@@ -231,11 +235,10 @@ export default function ProgressComponent4() {
                           className={styles.checkboxInput}
                         />
                         <span
-                          className={`${styles.customCheckbox} ${
-                            selectedTriggers.includes(item.value)
-                              ? styles.checked
-                              : ""
-                          }`}
+                          className={`${styles.customCheckbox} ${selectedTriggers.includes(item.value)
+                            ? styles.checked
+                            : ""
+                            }`}
                         />
                         {item.label}
                       </label>
@@ -252,7 +255,13 @@ export default function ProgressComponent4() {
                 <button className={styles.prevBtn}>Previous step</button>
               </NavLink>
               <NavLink to={ROUTES.PROGRESS_STEP5}>
-                <button className={styles.nextBtn}>Next step</button>
+                <button
+                  className={styles.nextBtn}
+                  onClick={handleNext}
+                  
+                >
+                  Next Step
+                </button>
               </NavLink>
             </div>
           </main>

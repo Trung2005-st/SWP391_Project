@@ -7,37 +7,45 @@ import { ROUTES } from "../../../configs/routes";
 import { ProgressContext } from "../../../configs/ProgressContext";
 import { Avatar, Button } from "antd";
 import { UserOutlined, LogoutOutlined } from "@ant-design/icons";
+import api from "../../../configs/axios";
+
+function computeQuitDate(opt, picked) {
+  const today = new Date();
+  if (opt === "today") return today.toISOString().slice(0, 10);
+  if (opt === "tomorrow") { let t = new Date(today); t.setDate(t.getDate() + 1); return t.toISOString().slice(0, 10); }
+  if (opt === "notReady") { let w = new Date(today); w.setDate(w.getDate() + 7); return w.toISOString().slice(0, 10); }
+  return picked; // pickDate
+}
 
 export default function ProgressComponent1() {
-  const { quitDate, setQuitDate, finishTimeline, setFinishTimeline } =
-    useContext(ProgressContext);
-
-  const [showCommunityMenu, setShowCommunityMenu] = useState(false);
-  const [dateError, setDateError] = useState(false);
-
-  // token state for conditional header
-  const [token, setToken] = useState(localStorage.getItem("token"));
+  const { userId, setQuitDate, setFinishTimeline } = useContext(ProgressContext);
+  const [quitOption, setQuitOption] = useState("today");
+  const [pickedDate, setPickedDate] = useState("");
+  const [finishDays, setFinishDays] = useState(30);
+  const [saving, setSaving] = useState(false);
   const navigate = useNavigate();
-
+  const [token, setToken] = useState(localStorage.getItem("token"));
+  const [showCommunityMenu, setShowCommunityMenu] = useState(false);
   const toggleCommunityMenu = (e) => {
-    e.preventDefault();
+    e.preventDefault(); // ngăn NavLink navigate ngay lập tức
     setShowCommunityMenu((prev) => !prev);
   };
+  const handleLogout = () => { localStorage.removeItem("token"); setToken(null); navigate(ROUTES.HOME); };
 
-  const handleNextStep = () => {
-    if (quitDate === "pickDate" && !finishTimeline) {
-      setDateError(true);
-      return;
-    }
-    setDateError(false);
-    navigate(ROUTES.PROGRESS_STEP2);
+  const handleNext = async () => {
+    if (quitOption === "pickDate" && !pickedDate) return;
+    setSaving(true);
+    const isoDate = computeQuitDate(quitOption, pickedDate);
+    try {
+      await api.post("/user-plan/general", { userId, quitDate: isoDate, finishTimeline: finishDays });
+      setQuitDate(isoDate);
+      setFinishTimeline(finishDays);
+      navigate(ROUTES.PROGRESS_STEP2);
+    } catch {
+      alert("Không lưu được, thử lại.");
+    } finally { setSaving(false); }
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    setToken(null);
-    navigate(ROUTES.HOME);
-  };
 
   const options = [
     { value: "today", label: "Today" },
@@ -45,7 +53,7 @@ export default function ProgressComponent1() {
     { value: "pickDate", label: "Pick my date" },
     { value: "notReady", label: "Next week" },
   ];
-
+  console.log("📦 Provider render, userId =", userId);
   return (
     <div>
       {/* HEADER */}
@@ -105,7 +113,7 @@ export default function ProgressComponent1() {
         {/* conditional header buttons */}
         {token ? (
           <>
-            <div class={styles.groupBtn}>
+            <div className={styles.groupBtn}>
               <Avatar
                 icon={<UserOutlined />}
                 style={{
@@ -178,67 +186,43 @@ export default function ProgressComponent1() {
               <br />
             </section>
 
+
+            {/* OPTIONS */}
             <div className={styles.options}>
-              {options.map(({ value, label }) => (
-                <label
-                  key={value}
-                  className={`${styles.option} ${
-                    quitDate === value ? styles.selected : ""
-                  }`}
-                >
+              {options.map(o => (
+                <label key={o.value} className={`${styles.option} ${quitOption === o.value ? styles.selected : ""}`}>
                   <input
                     type="radio"
-                    name="quitDate"
-                    value={value}
-                    checked={quitDate === value}
+                    name="quitDateOption"
+                    value={o.value}
+                    checked={quitOption === o.value}
                     onChange={() => {
-                      setQuitDate(value);
-                      if (value === "pickDate" && !finishTimeline) {
-                        setDateError(true);
-                      } else {
-                        setDateError(false);
-                      }
+                      setQuitOption(o.value);
+                      setDateError(false);
                     }}
                     className={styles.radioInput}
                   />
                   <span className={styles.customRadio} />
-                  {label}
+                  {o.label}
                 </label>
               ))}
             </div>
 
-            {/* PICK DATE CARD */}
-            <br></br>
-            {quitDate === "pickDate" && (
+            {/* PICK DATE */}
+            {quitOption === "pickDate" && (
               <div className={styles.dateCard}>
                 <h4 className={styles.dateTitle}>Select your date</h4>
-                <br />
-                <input
-                  type="date"
-                  className={`${styles.datePicker} ${
-                    dateError ? styles.inputError : ""
-                  }`}
-                  value={finishTimeline}
-                  onChange={(e) => {
-                    setFinishTimeline(e.target.value);
-                    setDateError(false);
-                  }}
-                />
-                {dateError && (
-                  <div className={styles.errorText}>
-                    Please select a date before continuing
-                  </div>
-                )}
+                <input type="date" value={pickedDate} onChange={e => setPickedDate(e.target.value)} className={styles.datePicker} />
+
               </div>
             )}
-            <br></br>
 
             {/* FOOTER */}
             <br />
             <br />
             <div className={styles.footer}>
-              <button className={styles.nextBtn} onClick={handleNextStep}>
-                Next step
+              <button className={styles.nextBtn} onClick={handleNext} disabled={saving}>
+                {saving ? "Saving…" : "Next step"}
               </button>
             </div>
           </main>

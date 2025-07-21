@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button, Checkbox, Form, Input } from "antd";
 import "./login.css";
 import { toast } from "react-toastify";
@@ -9,26 +9,34 @@ import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../configs/routes";
 import logo from "../../../image/logo.png";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
+import { ProgressContext } from "../../configs/ProgressContext";
 
 function LoginForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { setUserId } = useContext(ProgressContext);
 
   const onFinish = async (values) => {
     console.log("Success:", values);
     try {
       // values: thông tin người dùng nhập
-      const response = await api.post("/login", values);
+      const response = await api.post("login", values);
+      console.log("🔥 login response:", response.data);
+      const user = response.data;
 
       // lưu thông tin đăng nhập của ng dùng vào 1 chỗ nào đó mà bất kì đâu cũng có thể sử dụng
       // cái đó dc gọi redux == sesstion bên môn prj
 
       // dispatch: gửi action đến redux store
       // action: là 1 object có type và payload
-      dispatch(login(response.data));
-      localStorage.setItem("token", response.data.token);
+      dispatch(login(user));
 
-      const user = response.data;
+      localStorage.setItem("token", user.token);
+      localStorage.setItem("userId", String(user.id));
+
+      console.log("🔑 LoginForm: setting userId =", user.id);
+      setUserId(user.id);
+
       if (user.role === 3) {
         navigate(ROUTES.ADMIN_USER);
       } else if (user.role === 1 || user.role === 2) {

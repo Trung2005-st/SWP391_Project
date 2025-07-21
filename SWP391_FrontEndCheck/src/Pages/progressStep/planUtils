@@ -1,0 +1,119 @@
+export const REASON_GROUPS = {
+  PERSONAL_HEALTH: [
+    'LIVE_LONGER',
+    'REDUCE_CANCER',
+    'LESS_COUGH'
+  ],
+  FAMILY_COMMUNITY: [
+    'PROTECT_CHILDREN',
+    'BE_A_ROLE_MODEL',
+    'SOCIAL_PRESSURE'
+  ],
+  FINANCIAL: [
+    'SAVE_MONEY',
+    'REDUCE_COST',
+    'PERSONAL_GOAL'
+  ]
+};
+
+// Plan code constants
+export const PLAN_CODES = {
+  PERSONAL_HEALTH: 'PLAN_HEALTH',
+  FAMILY_COMMUNITY: 'PLAN_FAMILY',
+  FINANCIAL: 'PLAN_FINANCIAL',
+  GENERAL: 'PLAN_GENERAL'
+};
+
+/**
+ * Given an array of selected reason codes, returns one of PLAN_CODES values.
+ * Logic: whichever category has the highest count wins. Ties or no clear winner => GENERAL.
+ */
+export function getRecommendedPlan(selectedReasons) {
+  const counts = {
+    PERSONAL_HEALTH: 0,
+    FAMILY_COMMUNITY: 0,
+    FINANCIAL: 0
+  };
+
+  selectedReasons.forEach(code => {
+    if (REASON_GROUPS.PERSONAL_HEALTH.includes(code)) counts.PERSONAL_HEALTH++;
+    else if (REASON_GROUPS.FAMILY_COMMUNITY.includes(code)) counts.FAMILY_COMMUNITY++;
+    else if (REASON_GROUPS.FINANCIAL.includes(code)) counts.FINANCIAL++;
+  });
+
+  const { PERSONAL_HEALTH, FAMILY_COMMUNITY, FINANCIAL } = counts;
+  if (PERSONAL_HEALTH > FAMILY_COMMUNITY && PERSONAL_HEALTH > FINANCIAL) {
+    return PLAN_CODES.PERSONAL_HEALTH;
+  }
+  if (FAMILY_COMMUNITY > PERSONAL_HEALTH && FAMILY_COMMUNITY > FINANCIAL) {
+    return PLAN_CODES.FAMILY_COMMUNITY;
+  }
+  if (FINANCIAL > PERSONAL_HEALTH && FINANCIAL > FAMILY_COMMUNITY) {
+    return PLAN_CODES.FINANCIAL;
+  }
+  // Tie or none selected
+  return PLAN_CODES.GENERAL;
+}
+
+// Detailed definitions for each plan
+export const PLAN_DEFINITIONS = {
+  [PLAN_CODES.PERSONAL_HEALTH]: {
+    code: PLAN_CODES.PERSONAL_HEALTH,
+    name: 'Health Focused Plan',
+    focus_category: 'Personal Health',
+    duration_weeks: 8,
+    description: 'This plan prioritizes improving your health through gradual reduction strategies, health monitoring, and support.',
+    weeklySteps: [
+      { week: 1, title: 'Chuẩn bị tâm lý', content: 'Đặt ngày bỏ thuốc, loại bỏ gạt tàn và bật nhắc nhở.' },
+      { week: 2, title: 'Theo dõi sức khỏe', content: 'Ghi lại triệu chứng ho, hụt hơi mỗi ngày.' },
+      { week: 3, title: 'Tập thở sâu', content: 'Thực hành 5 phút thở bụng sáng và tối.' },
+      { week: 4, title: 'Thói quen thay thế', content: 'Nhai kẹo cao su hoặc uống nước khi thèm.' },
+      { week: 5, title: 'Theo dõi tiến độ', content: 'Đối chiếu với mục tiêu sức khoẻ ban đầu.' },
+      { week: 6, title: 'Tăng cường vận động', content: 'Tập thể dục nhẹ 3 lần/tuần.' },
+      { week: 7, title: 'Đánh giá lại', content: 'Xem xét cảm giác sức khỏe và điều chỉnh.' },
+      { week: 8, title: 'Tiếp tục duy trì', content: 'Tiếp tục các thói quen tốt để giữ vững thành công.' },
+    ]
+  },
+  [PLAN_CODES.FAMILY_COMMUNITY]: {
+    code: PLAN_CODES.FAMILY_COMMUNITY,
+    name: 'Family & Community Plan',
+    focus_category: 'Family & Community',
+    duration_weeks: 6,
+    description: 'This plan centers on protecting your loved ones and building community support to help you quit for good.',
+    weeklySteps: [
+      { week: 1, title: 'Chia sẻ kế hoạch', content: 'Nói với người thân về ngày bỏ thuốc và nhờ họ cổ vũ.' },
+      { week: 2, title: 'Khu vực không khói', content: 'Đặt quy tắc “cấm thuốc” ở phòng khách và xe hơi.' },
+      { week: 3, title: 'Bạn đồng hành', content: 'Tìm bạn cùng bỏ thuốc để hai người hỗ trợ nhau.' },
+      { week: 4, title: 'Tham gia cộng đồng', content: 'Tham gia group online, chia sẻ trải nghiệm.' },
+      { week: 5, title: 'Kiểm tra tiến độ', content: 'Gọi video với bạn bè, nhờ họ đánh giá tiến độ.' },
+      { week: 6, title: 'Tổng kết & khen thưởng', content: 'Tổ chức buổi tiệc nhỏ gia đình để ăn mừng.' },
+    ]
+  },
+  [PLAN_CODES.FINANCIAL]: {
+    code: PLAN_CODES.FINANCIAL,
+    name: 'Financial Savings Plan',
+    focus_category: 'Financial / Saving Money',
+    duration_weeks: 4,
+    description: 'This plan emphasizes money-saving goals, tracking expenses, and rewarding yourself for milestones.',
+    weeklySteps: [
+      { week: 1, title: 'Theo dõi chi tiêu', content: 'Ghi lại mỗi gói thuốc không mua và tính tiền tiết kiệm.' },
+      { week: 2, title: 'Đặt mục tiêu nhỏ', content: 'Đặt quỹ tiết kiệm cho thứ mình thích (ví dụ: quà tặng).' },
+      { week: 3, title: 'Đánh giá tiến độ', content: 'Kiểm tra số tiền đã tiết kiệm được, cảm nhận thành quả.' },
+      { week: 4, title: 'Khen thưởng bản thân', content: 'Dùng một phần tiền tiết kiệm để tự thưởng.' },
+    ]
+  },
+  [PLAN_CODES.GENERAL]: {
+    code: PLAN_CODES.GENERAL,
+    name: 'Balanced Quit Plan',
+    focus_category: 'General',
+    duration_weeks: 5,
+    description: 'A balanced approach combining health, social, and financial strategies for people with diverse motivations.',
+     weeklySteps: [
+      { week: 1, title: 'Khởi động', content: 'Chọn lý do chính và đặt ngày bỏ thuốc.' },
+      { week: 2, title: 'Chiến lược hỗ trợ', content: 'Kết hợp thói quen mới, nhờ sự giúp đỡ từ bạn bè.' },
+      { week: 3, title: 'Quản lý kích thích', content: 'Ghi nhận trigger, rèn thói quen thay thế.' },
+      { week: 4, title: 'Tối ưu hóa', content: 'Điều chỉnh kế hoạch dựa trên tiến độ cá nhân.' },
+      { week: 5, title: 'Duy trì động lực', content: 'Ôn lại lý do, thiết lập mục tiêu dài hạn.' },
+    ]
+  }
+};

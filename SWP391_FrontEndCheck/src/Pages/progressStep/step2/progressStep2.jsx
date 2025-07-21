@@ -8,32 +8,42 @@ import { ROUTES } from "../../../configs/routes";
 import { ProgressContext } from "../../../configs/ProgressContext";
 import { Avatar, Button } from "antd";
 import { UserOutlined, LogoutOutlined } from "@ant-design/icons";
+import api from "../../../configs/axios";
 
 export default function ProgressComponent2() {
-  const {
-    cigarettesPerDay,
-    setCigarettesPerDay,
-    packCost,
-    setPackCost,
-    cigarettesPerPack,
-    setCigarettesPerPack,
-  } = useContext(ProgressContext);
+  const { userId, cigarettesPerDay, setCigarettesPerDay, packCost, setPackCost, cigarettesPerPack, setCigarettesPerPack } = useContext(ProgressContext);
+  const [saving, setSaving] = useState(false);
+  const navigate = useNavigate();
   // token state for conditional header
   const [token, setToken] = useState(localStorage.getItem("token"));
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    setToken(null);
-    navigate(ROUTES.HOME);
-  };
+  const handleLogout = () => { localStorage.removeItem("token"); setToken(null); navigate(ROUTES.HOME) };
 
   const [showCommunityMenu, setShowCommunityMenu] = useState(false);
-  const navigate = useNavigate();
 
   const toggleCommunityMenu = (e) => {
     e.preventDefault();
     setShowCommunityMenu((prev) => !prev);
   };
-
+  const handleNext = async () => {
+    if (!cigarettesPerDay || !packCost || !cigarettesPerPack) {
+      alert("Nhập đầy đủ thông tin");
+      return;
+    }
+    setSaving(true);
+    try {
+      await api.post("/user-plan/stats", {
+        userId,
+        cigarettesPerDay,
+        packCost,
+        cigarettesPerPack
+      });
+      navigate(ROUTES.PROGRESS_STEP3);
+    } catch {
+      alert("Lưu lỗi, thử lại");
+    } finally {
+      setSaving(false);
+    }
+  };
   return (
     <div>
       {/* HEADER */}
@@ -221,11 +231,11 @@ export default function ProgressComponent2() {
             <br />
             <div className={styles.footerButtons}>
               <NavLink to={ROUTES.PROGRESS_STEP1}>
-                <button className={styles.prevBtn}>Previous step</button>
+                <button className={styles.prevBtn} disabled={saving}>Previous step</button>
               </NavLink>
-              <NavLink to={ROUTES.PROGRESS_STEP3}>
-                <button className={styles.nextBtn}>Next step</button>
-              </NavLink>
+              <button className={styles.nextBtn} onClick={handleNext} disabled={saving}>
+                {saving ? "Saving…" : "Next step"}
+              </button>
             </div>
           </main>
         </div>

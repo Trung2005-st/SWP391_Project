@@ -81,6 +81,13 @@ export default function ArchivePage() {
       text: `<ul><li>Item 1</li><li>Item 2</li></ul>`,
       sendAt: "2025-07-13T16:00:00Z",
     },
+    {
+      id: 5,
+      name: "Trung C",
+      tpl: 4,
+      text: `<ul><li>Item 1</li><li>Item 2</li></ul>`,
+      sendAt: "2025-07-13T16:00:00Z",
+    },
   ];
 
   // 2️⃣ State
@@ -102,7 +109,8 @@ export default function ArchivePage() {
       .then(({ data }) => {
         const apiCards = data.map((it) => ({
           id: it.encouragementID,
-          name: `${it.sender?.firstName || ""} ${it.sender?.lastName || ""}`.trim(),
+          // / name: `${it.sender?.firstName || ""} ${it.sender?.lastName || ""}`.trim(),
+          name: "Trung cmnr",
           tpl: null,
           templatePath: it.template || "",
           text: it.message || "",
@@ -294,7 +302,7 @@ export default function ArchivePage() {
                       <div className={styles.detailCard}>
                         <Avatar src={selectedAvatar} size={48} />
                         <div className={styles.detailText}>
-                          <p className={styles.detailName}>Hi {item.name}</p>
+                          <p className={styles.detailName}> {item.name}</p>
                           <p className={styles.detailDate}>
                             {formatDate(item.sendAt)}
                           </p>

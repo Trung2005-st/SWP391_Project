@@ -155,6 +155,7 @@ public class AuthenticationService implements UserDetailsService {
             throw new AuthenticationException("Account is locked! Contact admin to unlock");
         }
         AccountResponse accountResponse = modelMapper.map(account, AccountResponse.class);
+        accountResponse.setId(account.getUserID());
         String token = tokenService.generateToken(account);
         accountResponse.setToken(token);
         return accountResponse;
