@@ -1,0 +1,106 @@
+.rightCard {
+  padding: 16px;
+}
+
+.rightTitle {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.emojiCountWrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid #e2e8f0;
+  margin-top: 12px;
+  margin-bottom: 24px;
+}
+
+.emojiItem {
+  cursor: pointer;
+  font-size: 24px;
+  transition: all 0.2s;
+  border-radius: 6px;
+  padding: 4px;
+}
+
+.emojiItem:hover {
+  background-color: rgba(34, 197, 94, 0.15); /* green tint */
+}
+
+.selected {
+  transform: scale(1.3);
+  filter: brightness(1.2);
+}
+
+.divCheck{
+  height: 50px;
+}
+
+.commentBox {
+  margin-top: 300px;
+  margin-bottom: 16px;
+}
+
+.inputRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.textarea {
+  width: 100%;
+  min-height: 60px;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  resize: vertical;
+}
+
+.actionRow {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+.submitBtn {
+  background-color: #16a34a;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 6px 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.reportBtn {
+  background-color: #fee2e2;
+  color: #dc2626;
+  border: none;
+  border-radius: 20px;
+  padding: 6px 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.commentList {
+  max-height: 260px;
+  overflow-y: auto;
+  padding-right: 4px;
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.commentCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}

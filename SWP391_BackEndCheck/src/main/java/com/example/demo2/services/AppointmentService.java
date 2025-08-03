@@ -7,6 +7,7 @@ import com.example.demo2.repository.AppointmentRepository;
 import com.example.demo2.repository.UserRepository;
 import com.example.demo2.utils.AccountUtils;
 import jakarta.transaction.Transactional;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -81,4 +82,46 @@ public class AppointmentService {
     public List<Appointment> getAppointmentsByDoctor(Long doctorId) {
         return appointmentRepository.findByDoctor_UserID(doctorId);
     }
+
+    public void cancelAppointment(Long appointmentId) {
+        appointmentRepository.deleteById(appointmentId);
+    }
+
+    @Transactional
+    public AppointmentDTO updateAppointment(Long appointmentId, AppointmentDTO dto) {
+        Optional<Appointment> optionalAppointment = appointmentRepository.findById(appointmentId);
+        if (optionalAppointment.isEmpty()) {
+            throw new RuntimeException("Appointment not found");
+        }
+
+        Appointment appointment = optionalAppointment.get();
+
+        // Cập nhật các trường
+        appointment.setSymptoms(dto.getSymptoms());
+        appointment.setGoals(dto.getGoals());
+        appointment.setHistory(dto.getHistory());
+        appointment.setFrequency(dto.getFrequency());
+        appointment.setShift(dto.getShift());
+
+        // Cập nhật appointmentDate dựa vào shift (slot)
+        String shift = dto.getShift();
+        String startHour = shift.split("-")[0];
+        LocalTime shiftStart = LocalTime.parse(startHour);
+
+        LocalDateTime newDateTime = appointment.getCreatedAt()
+                .toLocalDate()
+                .plusDays(1)
+                .atTime(shiftStart);
+        appointment.setAppointmentDate(newDateTime);
+
+        // Không đổi doctor, user, meetUrl
+
+        Appointment saved = appointmentRepository.save(appointment);
+        return AppointmentDTO.fromEntity(saved);
+    }
+
+    public List<Appointment> getAllAppointments() {
+        return appointmentRepository.findAll(Sort.by(Sort.Direction.DESC, "appointmentDate"));
+    }
+
 }

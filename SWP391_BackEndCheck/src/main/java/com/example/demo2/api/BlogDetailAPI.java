@@ -111,4 +111,21 @@ public class BlogDetailAPI {
         return ResponseEntity.ok(blogDetailRepository.save(blog));
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateBlog(
+            @PathVariable Long id,
+            @Valid @RequestBody BlogDetail updatedBlog) {
+        BlogDetail existingBlog = blogDetailRepository.findById(id)
+                .orElseThrow(() -> new BlogDetailNotFoundException("Blog not found"));
+
+        existingBlog.setTitle(updatedBlog.getTitle());
+        existingBlog.setSubtitle(updatedBlog.getSubtitle());
+        existingBlog.setStory(updatedBlog.getStory());
+        existingBlog.setBannerPath(updatedBlog.getBannerPath());
+        // Không cần set lại user hoặc createdAt (trừ khi bạn muốn thay đổi)
+
+        BlogDetail savedBlog = blogDetailRepository.save(existingBlog);
+
+        return ResponseEntity.ok(savedBlog);
+    }
 }

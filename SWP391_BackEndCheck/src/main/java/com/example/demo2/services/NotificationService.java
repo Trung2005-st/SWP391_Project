@@ -5,6 +5,7 @@ import com.example.demo2.entity.Notification;
 import com.example.demo2.enums.NotificationTarget;
 import com.example.demo2.repository.NotificationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -31,7 +32,7 @@ public class NotificationService {
     }
 
     public List<NotificationDTO> getAll() {
-        return notificationRepository.findAll().stream().map(this::toDTO).collect(Collectors.toList());
+        return notificationRepository.findAll(Sort.by(Sort.Direction.DESC,"sentAt")).stream().map(this::toDTO).collect(Collectors.toList());
     }
 
     public List<NotificationDTO> getByTarget(NotificationTarget target) {

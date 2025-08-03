@@ -1,0 +1,119 @@
+export const REASON_GROUPS = {
+  PERSONAL_HEALTH: [
+    'LIVE_LONGER',
+    'REDUCE_CANCER',
+    'LESS_COUGH'
+  ],
+  FAMILY_COMMUNITY: [
+    'PROTECT_CHILDREN',
+    'BE_A_ROLE_MODEL',
+    'SOCIAL_PRESSURE'
+  ],
+  FINANCIAL: [
+    'SAVE_MONEY',
+    'REDUCE_COST',
+    'PERSONAL_GOAL'
+  ]
+};
+
+// Plan code constants
+export const PLAN_CODES = {
+  PERSONAL_HEALTH: 'PLAN_HEALTH',
+  FAMILY_COMMUNITY: 'PLAN_FAMILY',
+  FINANCIAL: 'PLAN_FINANCIAL',
+  GENERAL: 'PLAN_GENERAL'
+};
+
+/**
+ * Given an array of selected reason codes, returns one of PLAN_CODES values.
+ * Logic: whichever category has the highest count wins. Ties or no clear winner => GENERAL.
+ */
+export function getRecommendedPlan(selectedReasons) {
+  const counts = {
+    PERSONAL_HEALTH: 0,
+    FAMILY_COMMUNITY: 0,
+    FINANCIAL: 0
+  };
+
+  selectedReasons.forEach(code => {
+    if (REASON_GROUPS.PERSONAL_HEALTH.includes(code)) counts.PERSONAL_HEALTH++;
+    else if (REASON_GROUPS.FAMILY_COMMUNITY.includes(code)) counts.FAMILY_COMMUNITY++;
+    else if (REASON_GROUPS.FINANCIAL.includes(code)) counts.FINANCIAL++;
+  });
+
+  const { PERSONAL_HEALTH, FAMILY_COMMUNITY, FINANCIAL } = counts;
+  if (PERSONAL_HEALTH > FAMILY_COMMUNITY && PERSONAL_HEALTH > FINANCIAL) {
+    return PLAN_CODES.PERSONAL_HEALTH;
+  }
+  if (FAMILY_COMMUNITY > PERSONAL_HEALTH && FAMILY_COMMUNITY > FINANCIAL) {
+    return PLAN_CODES.FAMILY_COMMUNITY;
+  }
+  if (FINANCIAL > PERSONAL_HEALTH && FINANCIAL > FAMILY_COMMUNITY) {
+    return PLAN_CODES.FINANCIAL;
+  }
+  // Tie or none selected
+  return PLAN_CODES.GENERAL;
+}
+
+// Detailed definitions for each plan
+export const PLAN_DEFINITIONS = {
+ [PLAN_CODES.PERSONAL_HEALTH]: {
+  code: PLAN_CODES.PERSONAL_HEALTH,
+  name: 'Health Focused Plan',
+  focus_category: 'Personal Health',
+  duration_weeks: 8,
+  description: 'This plan prioritizes improving your health through gradual reduction strategies, health monitoring, and support.',
+  weeklySteps: [
+    { week: 1, title: 'Mental Preparation', content: 'Set your quit date, remove ashtrays, and enable reminders.' },
+    { week: 2, title: 'Health Monitoring', content: 'Track symptoms like coughing or shortness of breath daily.' },
+    { week: 3, title: 'Deep Breathing Practice', content: 'Practice abdominal breathing for 5 minutes morning and night.' },
+    { week: 4, title: 'Healthy Substitutes', content: 'Chew gum or drink water when cravings hit.' },
+    { week: 5, title: 'Progress Tracking', content: 'Compare your progress to initial health goals.' },
+    { week: 6, title: 'Increase Physical Activity', content: 'Exercise lightly 3 times a week.' },
+    { week: 7, title: 'Reevaluate & Adjust', content: 'Assess how you feel and make needed changes.' },
+    { week: 8, title: 'Maintain Success', content: 'Continue healthy habits to sustain results.' },
+  ]
+},
+[PLAN_CODES.FAMILY_COMMUNITY]: {
+  code: PLAN_CODES.FAMILY_COMMUNITY,
+  name: 'Family & Community Plan',
+  focus_category: 'Family & Community',
+  duration_weeks: 6,
+  description: 'This plan centers on protecting your loved ones and building community support to help you quit for good.',
+  weeklySteps: [
+    { week: 1, title: 'Share Your Plan', content: 'Tell your loved ones about your quit date and ask for their support.' },
+    { week: 2, title: 'Smoke-Free Zones', content: 'Establish no-smoking rules in your living room and car.' },
+    { week: 3, title: 'Quit Buddy', content: 'Find a quit partner to support each other.' },
+    { week: 4, title: 'Join a Community', content: 'Join an online group and share your journey.' },
+    { week: 5, title: 'Check Progress', content: 'Video call a friend and ask for feedback on your progress.' },
+    { week: 6, title: 'Celebrate Success', content: 'Host a small family celebration to honor your success.' },
+  ]
+},
+[PLAN_CODES.FINANCIAL]: {
+  code: PLAN_CODES.FINANCIAL,
+  name: 'Financial Savings Plan',
+  focus_category: 'Financial / Saving Money',
+  duration_weeks: 4,
+  description: 'This plan emphasizes money-saving goals, tracking expenses, and rewarding yourself for milestones.',
+  weeklySteps: [
+    { week: 1, title: 'Track Spending', content: 'Record each pack not bought and calculate the savings.' },
+    { week: 2, title: 'Set Mini Goals', content: 'Create a savings jar for something you enjoy (e.g., gift).' },
+    { week: 3, title: 'Review Progress', content: 'Check your savings and appreciate your progress.' },
+    { week: 4, title: 'Reward Yourself', content: 'Use part of your savings to treat yourself.' },
+  ]
+},
+[PLAN_CODES.GENERAL]: {
+  code: PLAN_CODES.GENERAL,
+  name: 'Balanced Quit Plan',
+  focus_category: 'General',
+  duration_weeks: 5,
+  description: 'A balanced approach combining health, social, and financial strategies for people with diverse motivations.',
+  weeklySteps: [
+    { week: 1, title: 'Get Started', content: 'Choose your main reason and set a quit date.' },
+    { week: 2, title: 'Support Strategy', content: 'Adopt new habits and seek help from friends.' },
+    { week: 3, title: 'Manage Triggers', content: 'Identify smoking triggers and build healthier responses.' },
+    { week: 4, title: 'Optimize Plan', content: 'Adjust your plan based on personal progress.' },
+    { week: 5, title: 'Stay Motivated', content: 'Revisit your reason and set long-term goals.' },
+  ]
+}
+};

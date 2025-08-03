@@ -4,12 +4,15 @@ import com.example.demo2.entity.User;
 import com.example.demo2.model.request.SaveGeneralRequest;
 import com.example.demo2.services.TokenService;
 import com.example.demo2.services.UserPlanGeneralService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/user-plan")
+
+@SecurityRequirement(name="api")
 @CrossOrigin("*")
 public class UserPlanGeneralAPI {
     @Autowired

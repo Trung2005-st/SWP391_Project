@@ -1,0 +1,1076 @@
+.fullPage {
+  background: #e6fef1;
+  min-height: 100vh;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 32px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.logoImg {
+  width: 48px;
+  height: 48px;
+}
+.logoText {
+  font-family: "DM Sans", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #16a34a;
+}
+.nav {
+  display: flex;
+  gap: 32px;
+}
+.navItem {
+  font-family: "DM Sans", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #374151;
+  text-decoration: none;
+  cursor: pointer;
+}
+.startBtn {
+  background: #16a34a;
+  color: #fff;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 24px;
+  cursor: pointer;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.9rem;
+}
+.groupBtn {
+  display: flex;
+  align-items: center;
+}
+
+.communityWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: calc(100% + 20px);
+  right: -8px;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 12px 0;
+  min-width: 200px;
+  z-index: 10;
+}
+
+.dropdownItem {
+  display: block;
+  padding: 10px 20px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 14px;
+  color: #1f2041;
+  text-decoration: none;
+}
+
+.dropdownItem + .dropdownItem {
+  margin-top: 4px;
+}
+
+.dropdownItem:hover {
+  background-color: #f0fdf4;
+  color: #166534;
+}
+
+/* 2-CỘT */
+.pageWrapper {
+  padding: 32px 16px;
+  display: flex;
+  justify-content: center;
+}
+.twoColumn {
+  display: flex;
+  gap: 32px;
+  width: 100%;
+  max-width: 1400px;
+}
+
+/* CARD CHUNG */
+.card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 5px 16px rgba(8, 15, 52, 0.06);
+}
+
+/* CARD BÊN PHẢI (nếu bạn cần 2 kiểu khác nhau) */
+.card2 {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  width: 100%;
+  max-width: 1200px;
+  box-shadow: 0 5px 16px rgba(8, 15, 52, 0.06);
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 200px;
+}
+.sidebar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.sidebarItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  margin-bottom: 8px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #374151;
+  cursor: pointer;
+  border-radius: 8px;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
+}
+.sidebarItem:hover {
+  background: #f3f4f6;
+}
+.active {
+  background: #16a34a;
+  color: #fff;
+}
+.icon {
+  font-size: 1.2rem;
+}
+
+/* PAGE TITLE */
+.pageTitle {
+  font-family: "DM Sans", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2041;
+  margin-bottom: 24px;
+}
+
+/* tăng gap giữa các item */
+.blogGrid {
+  /* display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 32px;  */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+/* bọc mỗi item thành card */
+.blogCard {
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.blogImage {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+.blogType {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #16a34a;
+  text-transform: uppercase;
+}
+.blogTitle {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1f2041;
+  line-height: 1.2;
+}
+.blogDate {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.75rem;
+  color: #6f6090;
+}
+.cardActions {
+  display: flex;
+  gap: 8px;
+  margin-top: auto;
+}
+
+/* LOAD MORE BUTTON */
+.loadMore {
+  display: block;
+  margin: 24px auto 0;
+  background: #16a34a;
+  color: #fff;
+  border: none;
+  padding: 12px 32px;
+  border-radius: 24px;
+  cursor: pointer;
+  font-family: "DM Sans", sans-serif;
+  font-size: 1rem;
+}
+
+/* ————— Phần bổ sung từ CSS 2 ————— */
+
+/* RIGHT PANEL CHO PROFILE (nếu cần tái sử dụng) */
+.rightPanel {
+  flex: 1;
+}
+.profileHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+.profileTitle {
+  font-family: "DM Sans", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2041;
+}
+.profileAvatar {
+  border: 2px solid #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* FORM PROFILE */
+.profileContent {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+.formLabel {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #6f6090;
+  margin-bottom: 8px;
+}
+.formInput {
+  padding: 12px 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 1rem;
+  color: #374151;
+}
+.inputWithIcon {
+  position: relative;
+}
+.verifyIcon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #16a34a;
+  font-size: 1.2rem;
+}
+
+/* NÚT Previous/Next ở PROFILE */
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+.prevBtn {
+  background: transparent;
+  color: #16a34a;
+  border: 2px solid #16a34a;
+  padding: 8px 20px;
+  border-radius: 24px;
+  cursor: pointer;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.9rem;
+}
+.nextBtn {
+  background: #16a34a;
+  color: #fff;
+  border: none;
+  padding: 12px 32px;
+  border-radius: 24px;
+  cursor: pointer;
+  font-family: "DM Sans", sans-serif;
+  font-size: 1rem;
+}
+
+/* ===== Archive list container ===== */
+.archiveList {
+  display: flex;
+  flex-direction: column;
+  gap: 24px; /* khoảng cách giữa các bubble */
+  margin-top: 16px;
+}
+
+/* Giảm khoảng đệm 2 bên, để white‐box sát template hơn */
+.archiveItem {
+  padding: 8px 16px; /* 8px trên/dưới, 16px trái/phải */
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+/* White‐box giờ fill hết chiều ngang của .archiveItem */
+.archiveContent {
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+  width: 100%; /* chiếm hết phần còn lại */
+  max-width: none; /* bỏ giới hạn cũ */
+  margin: 0; /* không căn giữa */
+}
+
+.ant-notification-notice {
+  animation: slideInFromRight 0.3s ease-out forwards;
+}
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+/* when selected, bubble grows downward to fit the 400px detail pill */
+.archiveItem.selected {
+  padding-bottom: 120px;
+}
+
+/* make sure the bubble itself doesn’t clip our pill */
+.archiveItem {
+  overflow: visible;
+}
+
+/* center & size the pill inside that new space */
+.detailCard {
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px;
+  max-width: calc(100% - 32px);
+  background: #fff;
+  border-radius: 12px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  z-index: 10;
+}
+
+.detailText {
+  margin-left: 12px;
+  flex: 1;
+}
+.detailName {
+  margin: 0;
+  font-weight: 700;
+}
+.detailDate {
+  margin: 0;
+  font-size: 0.75rem;
+  color: #6f6090;
+}
+.detailClose {
+  margin-left: auto;
+  color: #999;
+  cursor: pointer;
+}
+/* ── Feedback‑only overrides (scoped under the .feedbackPage wrapper) ── */
+/* ─── Feedback page styles ─── */
+
+/* Giữ nguyên các style emojiOptions, emojiOption, … từ trước */
+
+.feedbackList {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 16px;
+}
+
+.feedbackItem {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.feedbackHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.feedbackMeta {
+  flex: 1;
+}
+
+.feedbackName {
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.25rem; /* bumped up */
+}
+
+.feedbackDate {
+  margin: 0;
+  font-size: 0.875rem; /* slightly larger */
+  color: #6f6090;
+}
+
+.feedbackEmoji {
+  margin-left: 12px; /* sits right after the date */
+  background: #16a34a;
+  color: #fff;
+  width: 48px; /* increased size */
+  height: 48px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem; /* larger emoji */
+}
+
+.feedbackText {
+  margin-top: 12px;
+  font-size: 1.125rem; /* slightly larger body text */
+  color: #374151;
+}
+
+.submitFeedbackBtn {
+  background: #16a34a;
+  border: none;
+  padding: 0 32px;
+  height: 48px;
+  border-radius: 24px;
+  display: block;
+  margin: 32px auto 0;
+}
+/* ===== Form feedback mới ===== */
+.innerCard {
+  max-width: 600px; /* form không vượt quá 600px */
+  margin: 0 auto; /* căn giữa trong .card2 */
+  background: #fff;
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0 5px 16px rgba(8, 15, 52, 0.06);
+}
+
+.fullPage {
+  background: #e6fef1;
+  min-height: 100vh;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 32px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.logoImg {
+  width: 48px;
+  height: 48px;
+}
+.logoText {
+  font-family: "DM Sans", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #16a34a;
+}
+.nav {
+  display: flex;
+  gap: 32px;
+}
+.navItem {
+  font-family: "DM Sans", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #374151;
+  text-decoration: none;
+  cursor: pointer;
+}
+.startBtn {
+  background: #16a34a;
+  color: #fff;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 24px;
+  cursor: pointer;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.9rem;
+}
+.groupBtn {
+  display: flex;
+  align-items: center;
+}
+
+.communityWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: calc(100% + 20px);
+  right: -8px;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 12px 0;
+  min-width: 200px;
+  z-index: 10;
+}
+
+.dropdownItem {
+  display: block;
+  padding: 10px 20px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 14px;
+  color: #1f2041;
+  text-decoration: none;
+}
+
+.dropdownItem + .dropdownItem {
+  margin-top: 4px;
+}
+
+.dropdownItem:hover {
+  background-color: #f0fdf4;
+  color: #166534;
+}
+
+/* 2-CỘT */
+.pageWrapper {
+  padding: 32px 16px;
+  display: flex;
+  justify-content: center;
+}
+.twoColumn {
+  display: flex;
+  gap: 32px;
+  width: 100%;
+  max-width: 1400px;
+}
+
+/* CARD CHUNG */
+.card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 5px 16px rgba(8, 15, 52, 0.06);
+}
+
+/* CARD BÊN PHẢI (nếu bạn cần 2 kiểu khác nhau) */
+.card2 {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  width: 100%;
+  max-width: 1200px;
+  box-shadow: 0 5px 16px rgba(8, 15, 52, 0.06);
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 200px;
+}
+.sidebar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.sidebarItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  margin-bottom: 8px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #374151;
+  cursor: pointer;
+  border-radius: 8px;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
+}
+.sidebarItem:hover {
+  background: #f3f4f6;
+}
+.active {
+  background: #16a34a;
+  color: #fff;
+}
+.icon {
+  font-size: 1.2rem;
+}
+
+/* PAGE TITLE */
+.pageTitle {
+  font-family: "DM Sans", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2041;
+  margin-bottom: 24px;
+}
+
+/* tăng gap giữa các item */
+.blogGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 32px; /* trước là 24px, giờ cho rộng thêm */
+}
+
+/* bọc mỗi item thành card */
+.blogCard {
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.blogImage {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+.blogType {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #16a34a;
+  text-transform: uppercase;
+}
+.blogTitle {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1f2041;
+  line-height: 1.2;
+}
+.blogDate {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.75rem;
+  color: #6f6090;
+}
+.cardActions {
+  display: flex;
+  gap: 8px;
+  margin-top: auto;
+}
+
+/* LOAD MORE BUTTON */
+.loadMore {
+  display: block;
+  margin: 24px auto 0;
+  background: #16a34a;
+  color: #fff;
+  border: none;
+  padding: 12px 32px;
+  border-radius: 24px;
+  cursor: pointer;
+  font-family: "DM Sans", sans-serif;
+  font-size: 1rem;
+}
+
+/* ————— Phần bổ sung từ CSS 2 ————— */
+
+/* RIGHT PANEL CHO PROFILE (nếu cần tái sử dụng) */
+.rightPanel {
+  flex: 1;
+}
+.profileHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+.profileTitle {
+  font-family: "DM Sans", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2041;
+}
+.profileAvatar {
+  border: 2px solid #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* FORM PROFILE */
+.profileContent {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+.formLabel {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #6f6090;
+  margin-bottom: 8px;
+}
+.formInput {
+  padding: 12px 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 1rem;
+  color: #374151;
+}
+.inputWithIcon {
+  position: relative;
+}
+.verifyIcon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #16a34a;
+  font-size: 1.2rem;
+}
+
+/* NÚT Previous/Next ở PROFILE */
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+.prevBtn {
+  background: transparent;
+  color: #16a34a;
+  border: 2px solid #16a34a;
+  padding: 8px 20px;
+  border-radius: 24px;
+  cursor: pointer;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.9rem;
+}
+.nextBtn {
+  background: #16a34a;
+  color: #fff;
+  border: none;
+  padding: 12px 32px;
+  border-radius: 24px;
+  cursor: pointer;
+  font-family: "DM Sans", sans-serif;
+  font-size: 1rem;
+}
+
+/* ===== Archive list container ===== */
+.archiveList {
+  display: flex;
+  flex-direction: column;
+  gap: 24px; /* khoảng cách giữa các bubble */
+  margin-top: 16px;
+}
+
+/* Giảm khoảng đệm 2 bên, để white‐box sát template hơn */
+.archiveItem {
+  padding: 8px 16px; /* 8px trên/dưới, 16px trái/phải */
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+/* White‐box giờ fill hết chiều ngang của .archiveItem */
+.archiveContent {
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+  width: 100%; /* chiếm hết phần còn lại */
+  max-width: none; /* bỏ giới hạn cũ */
+  margin: 0; /* không căn giữa */
+}
+
+.ant-notification-notice {
+  animation: slideInFromRight 0.3s ease-out forwards;
+}
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+/* when selected, bubble grows downward to fit the 400px detail pill */
+.archiveItem.selected {
+  padding-bottom: 120px;
+}
+
+/* make sure the bubble itself doesn’t clip our pill */
+.archiveItem {
+  overflow: visible;
+}
+
+/* center & size the pill inside that new space */
+.detailCard {
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px;
+  max-width: calc(100% - 32px);
+  background: #fff;
+  border-radius: 12px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  z-index: 10;
+}
+
+.detailText {
+  margin-left: 12px;
+  flex: 1;
+}
+.detailName {
+  margin: 0;
+  font-weight: 700;
+}
+.detailDate {
+  margin: 0;
+  font-size: 0.75rem;
+  color: #6f6090;
+}
+.detailClose {
+  margin-left: auto;
+  color: #999;
+  cursor: pointer;
+}
+/* ── Feedback‑only overrides (scoped under the .feedbackPage wrapper) ── */
+/* ─── Feedback page styles ─── */
+
+/* Giữ nguyên các style emojiOptions, emojiOption, … từ trước */
+
+.feedbackList {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 16px;
+}
+
+.feedbackItem {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.feedbackHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.feedbackMeta {
+  flex: 1;
+}
+
+.feedbackName {
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.25rem; /* bumped up */
+}
+
+.feedbackDate {
+  margin: 0;
+  font-size: 0.875rem; /* slightly larger */
+  color: #6f6090;
+}
+
+.feedbackEmoji {
+  margin-left: 12px; /* sits right after the date */
+  background: #16a34a;
+  color: #fff;
+  width: 48px; /* increased size */
+  height: 48px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem; /* larger emoji */
+}
+
+.feedbackText {
+  margin-top: 12px;
+  font-size: 1.125rem; /* slightly larger body text */
+  color: #374151;
+}
+
+.submitFeedbackBtn {
+  background: #16a34a;
+  border: none;
+  padding: 0 32px;
+  height: 48px;
+  border-radius: 24px;
+  display: block;
+  margin: 40px auto 0;
+}
+.innerCard {
+  max-width: 750px; /* rộng hơn chút */
+  margin: 0 auto; /* căn giữa */
+  background: #fff;
+  padding: 48px; /* tăng padding */
+  border-radius: 16px;
+  box-shadow: 0 5px 16px rgba(8, 15, 52, 0.06);
+  text-align: center; /* canh giữa toàn bộ nội dung */
+}
+
+/* ===== Tiêu đề và mô tả ===== */
+.pageTitle {
+  font-size: 1.75rem; /* lớn hơn */
+  margin-bottom: 8px;
+}
+.innerCard > p {
+  font-size: 1.125rem; /* lớn hơn */
+  color: #374151;
+  margin-bottom: 32px; /* tăng khoảng cách sau mô tả */
+}
+
+/* ===== Emoji options ===== */
+.emojiOptions {
+  display: flex;
+  justify-content: center;
+  gap: 24px; /* khoảng cách rộng hơn */
+  margin: 32px 0; /* trên/dưới to hơn */
+}
+
+.emojiOption {
+  flex: 0 0 auto;
+  width: 120px; /* rộng hơn */
+  background: #f3f4f6;
+  border-radius: 12px;
+  padding: 20px; /* tăng padding */
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.selectedEmoji {
+  background: #16a34a;
+  color: #fff;
+}
+
+.emojiIcon {
+  display: block;
+  font-size: 2.5rem; /* lớn hơn */
+  margin-bottom: 12px;
+}
+
+.emojiLabel {
+  font-size: 1rem; /* lớn hơn */
+  line-height: 1.2;
+  text-align: center; /* đảm bảo label luôn giữa */
+}
+
+/* ===== Textarea ===== */
+.feedbackTextarea {
+  width: 100%;
+  font-size: 1rem; /* tăng font */
+  min-height: 120px; /* cao hơn */
+  margin-bottom: 32px; /* khoảng cách dưới */
+}
+
+/* ===== Submit button ===== */
+.submitFeedbackBtn {
+  background: #16a34a;
+  border: none;
+  width: 100%;
+  max-width: 320px; /* giới hạn độ rộng */
+  height: 56px; /* cao hơn */
+  border-radius: 28px;
+  font-size: 1.125rem; /* lớn hơn */
+  margin: 0 auto; /* căn giữa */
+  display: block;
+}
+.feedbackFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 24px;
+}
+
+.feedbackFooter .ant-btn-link {
+  padding: 0;
+  font-size: 1rem;
+  color: #16a34a;
+}
+
+/* Load More button: green outline, rounded, green text */
+.loadMoreBtn {
+  border: 2px solid #16a34a;
+  color: #16a34a;
+  background: transparent;
+  border-radius: 24px;
+  padding: 8px 20px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+.loadMoreBtn:hover {
+  background: rgba(22, 163, 74, 0.1);
+}
+
+/* Submit Feedback button: solid green, white bold text */
+.submitFeedbackBtn {
+  background: #16a34a;
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  padding: 12px 32px;
+  border-radius: 24px;
+  font-size: 1.125rem;
+  font-family: "DM Sans", sans-serif;
+  transition: opacity 0.2s;
+}
+.submitFeedbackBtn:hover {
+  opacity: 0.85;
+}

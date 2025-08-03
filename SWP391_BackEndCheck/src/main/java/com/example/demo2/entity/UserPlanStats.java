@@ -21,4 +21,9 @@ public class UserPlanStats {
     @PrePersist
     @PreUpdate
     public void touch() { updatedAt = LocalDateTime.now(); }
+
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "user_id")
+    private User user;
 }

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/profile")
 @SecurityRequirement(name="api")
+
+@SecurityRequirement(name="api")
 public class UserProfileAPI {
     @Autowired
     UserProfileService userProfileService;

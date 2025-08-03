@@ -38,6 +38,26 @@ public class DashboardAPI {
     ) {
         return ResponseEntity.ok(dashboardService.getNewUsersTrend(from, to));
     }
+    @GetMapping("/dashboard/plan-trend")
+    public ResponseEntity<List<NewUserTrendDTO>> getPlanTrend(
+            @RequestParam LocalDate from,
+            @RequestParam LocalDate to) {
+        return ResponseEntity.ok(dashboardService.getPlanTrend(from, to));
+    }
+
+    @GetMapping("/dashboard/money-saved-trend")
+    public ResponseEntity<List<NewUserTrendDTO>> getMoneySavedTrend(
+            @RequestParam LocalDate from,
+            @RequestParam LocalDate to) {
+        return ResponseEntity.ok(dashboardService.getMoneySavedTrend(from, to));
+    }
+
+    @GetMapping("/dashboard/rating-trend")
+    public ResponseEntity<List<NewUserTrendDTO>> getRatingTrend(
+            @RequestParam LocalDate from,
+            @RequestParam LocalDate to) {
+        return ResponseEntity.ok(dashboardService.getAverageRatingTrend(from, to));
+    }
 
     // --- 3) Membership‐by‐plan (for pie chart) ---
     @GetMapping("/reports/members-by-plan")

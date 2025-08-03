@@ -9,6 +9,8 @@ public class DashBoardDTO {
     private long totalUser;
     private long totalCoach;
     private long newUserCount;
-    private String mostUsedMembership;
-    private long mostUsedMembershipCount;
+
+    private long totalPlan;
+    private double averageRating;
+    private double totalMoneySaved;
 }

@@ -7,6 +7,7 @@ import com.example.demo2.entity.User;
 import com.example.demo2.repository.FeedbackRepository;
 import com.example.demo2.utils.AccountUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -36,7 +37,7 @@ public class FeedbackServiceImpl implements FeedbackService {
 
     @Override
     public List<FeedbackDTO> getAllFeedback() {
-        return feedbackRepo.findAll()
+        return feedbackRepo.findAll(Sort.by(Sort.Direction.DESC, "sentAt"))
                 .stream()
                 .map(this::mapToDto)
                 .collect(Collectors.toList());

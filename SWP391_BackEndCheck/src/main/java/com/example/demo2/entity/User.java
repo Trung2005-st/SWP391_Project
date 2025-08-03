@@ -93,6 +93,9 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user")
     List<UserMembership> userMemberships;
 
+    @OneToOne(mappedBy = "user")
+    @JsonIgnoreProperties("user")
+    private UserPlanStats stats;
 }
 
 //mô hình 3 lớp:

@@ -49,4 +49,22 @@ public class AppointmentController {
         return ResponseEntity.ok(dtos);
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<List<AppointmentDTO>> getAllAppointments() {
+        List<Appointment> all = appointmentService.getAllAppointments();
+        List<AppointmentDTO> dtos = all.stream().map(AppointmentDTO::fromEntity).collect(Collectors.toList());
+        return ResponseEntity.ok(dtos);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> cancelAppointment(@PathVariable Long id) {
+        appointmentService.cancelAppointment(id);
+        return ResponseEntity.ok().build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<AppointmentDTO> updateAppointment(@PathVariable Long id, @RequestBody AppointmentDTO dto) {
+        AppointmentDTO updated = appointmentService.updateAppointment(id, dto);
+        return ResponseEntity.ok(updated);
+    }
 }
